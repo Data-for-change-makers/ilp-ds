@@ -1,0 +1,5 @@
+value,label,definition,source
+owned by a public authority,Owned by a public authority,,"Brownfield land data standard, OwnershipStatus"
+not owned by a public authority,Not owned by a public authority,,"Brownfield land data standard, OwnershipStatus"
+mixed ownership,Mixed ownership,,"Brownfield land data standard, OwnershipStatus"
+unknown ownership,Unknown ownership,,"Brownfield land data standard, OwnershipStatus"

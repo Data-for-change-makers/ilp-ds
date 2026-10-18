@@ -1,0 +1,6 @@
+value,label,definition,source
+brownfield,Brownfield,"Previously developed land, as the NPPF glossary (Annex B) defines it, including large areas of hardstanding.",NPPF Annex B
+brownfield-greyfield,Brownfield: greyfield,"Brownfield land in current but underused commercial, retail or light-industrial use, such as a retail or business park. No statutory definition.",REILP-DS
+greenfield,Greenfield,Land that has not been previously developed. In general use; not defined in the NPPF.,REILP-DS
+mixed,Mixed,A cluster or area that includes both brownfield and greenfield land.,REILP-DS
+unknown,Unknown,Not yet established.,REILP-DS

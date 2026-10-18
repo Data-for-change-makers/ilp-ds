@@ -1,0 +1,8 @@
+value,label,definition,source
+full planning permission,Full planning permission,,"Brownfield land data standard, PermissionType"
+outline planning permission,Outline planning permission,,"Brownfield land data standard, PermissionType"
+reserved matters approval,Reserved matters approval,,"Brownfield land data standard, PermissionType"
+permission in principle,Permission in principle,,"Brownfield land data standard, PermissionType"
+technical details consent,Technical details consent,,"Brownfield land data standard, PermissionType"
+planning permission granted under an order,Planning permission granted under an order,,"Brownfield land data standard, PermissionType"
+other,Other,,"Brownfield land data standard, PermissionType"

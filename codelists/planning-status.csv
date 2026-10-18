@@ -1,0 +1,4 @@
+value,label,definition,source
+permissioned,Permissioned,,"Brownfield land data standard, PlanningStatus"
+not permissioned,Not permissioned,,"Brownfield land data standard, PlanningStatus"
+pending decision,Pending decision,,"Brownfield land data standard, PlanningStatus"

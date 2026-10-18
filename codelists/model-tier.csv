@@ -1,0 +1,5 @@
+value,label,definition,source
+context,Context,Simple extruded footprints that set the scene around the location.,REILP-DS
+massing,Massing,Block models of proposed or consented buildings.,REILP-DS
+realistic,Realistic,Textured models of existing buildings.,REILP-DS
+detailed,Detailed,"Detailed models, such as landmarks or a scheme's architecture.",REILP-DS

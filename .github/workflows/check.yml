@@ -1,0 +1,26 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Generated files are up to date
+        run: python tools/build_schema.py --check
+      - name: Tests
+        run: python -m pytest -q
+      - name: Check the examples
+        run: python tools/check_reilp.py examples/*.geojson

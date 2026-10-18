@@ -1,0 +1,6 @@
+value,label,definition,source
+single-ownership,Single ownership,The land has one owner.,REILP-DS
+assembled,Assembled,The land has been brought into one ownership or control.,REILP-DS
+partly-assembled,Partly assembled,Some of the land is in one ownership or control.,REILP-DS
+fragmented,Fragmented,The land is held by several owners and has not been assembled.,REILP-DS
+unknown,Unknown,Not yet established.,REILP-DS

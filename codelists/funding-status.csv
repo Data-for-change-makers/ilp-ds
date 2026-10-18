@@ -1,0 +1,5 @@
+value,label,definition,source
+secured,Secured,Funding for the development is secured.,REILP-DS
+secured-future-rounds-available,"Secured, with future funding rounds available","Funding is secured, and further funding rounds are open to investors.",REILP-DS
+partly-secured,Partly secured,Some of the funding is secured.,REILP-DS
+not-secured,Not secured,No funding is secured.,REILP-DS

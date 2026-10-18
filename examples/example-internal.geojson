@@ -1,0 +1,473 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "geojson": "https://purl.org/geojson/vocab#",
+    "reilp": "https://dataforchangemakers.org.uk/ns/reilp-ds#",
+    "schema": "https://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "type": "@type",
+    "id": "@id",
+    "FeatureCollection": "geojson:FeatureCollection",
+    "Feature": "geojson:Feature",
+    "Point": "geojson:Point",
+    "Polygon": "geojson:Polygon",
+    "MultiPolygon": "geojson:MultiPolygon",
+    "features": {
+      "@id": "geojson:features",
+      "@container": "@set"
+    },
+    "geometry": "geojson:geometry",
+    "coordinates": {
+      "@id": "geojson:coordinates",
+      "@container": "@list"
+    },
+    "properties": "@nest",
+    "standard": {
+      "@id": "dct:conformsTo",
+      "@type": "@json"
+    },
+    "publisher": "dct:publisher",
+    "public": null,
+    "base": null,
+    "changelog": null,
+    "kind": "reilp:kind",
+    "parent": {
+      "@id": "reilp:parent",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "description": "schema:description",
+    "organisation": "reilp:organisation",
+    "local-authorities": {
+      "@id": "reilp:localAuthorities",
+      "@container": "@set"
+    },
+    "planning-authority": "reilp:planningAuthority",
+    "opportunity-area": "reilp:opportunityArea",
+    "point": {
+      "@id": "reilp:point",
+      "@container": "@list"
+    },
+    "hectares": {
+      "@id": "reilp:hectares",
+      "@type": "xsd:decimal"
+    },
+    "ownership-status": "reilp:ownershipStatus",
+    "planning-references": {
+      "@id": "reilp:planningReferences",
+      "@container": "@set"
+    },
+    "planning-documents-url": {
+      "@id": "reilp:planningDocumentsUrl",
+      "@type": "@id"
+    },
+    "planning-status": "reilp:planningStatus",
+    "permission-type": "reilp:permissionType",
+    "permission-date": {
+      "@id": "reilp:permissionDate",
+      "@type": "xsd:date"
+    },
+    "homes-consented": {
+      "@id": "reilp:homesConsented",
+      "@type": "xsd:integer"
+    },
+    "floorspace-consented": {
+      "@id": "reilp:floorspaceConsented",
+      "@type": "@json"
+    },
+    "homes-pipeline": {
+      "@id": "reilp:homesPipeline",
+      "@type": "xsd:integer"
+    },
+    "floorspace-pipeline": {
+      "@id": "reilp:floorspacePipeline",
+      "@type": "@json"
+    },
+    "toid": "reilp:toid",
+    "uprns": {
+      "@id": "reilp:uprns",
+      "@container": "@set"
+    },
+    "storeys": {
+      "@id": "reilp:storeys",
+      "@type": "xsd:integer"
+    },
+    "height-m": {
+      "@id": "reilp:heightM",
+      "@type": "xsd:decimal"
+    },
+    "model-tier": "reilp:modelTier",
+    "model-url": {
+      "@id": "reilp:modelUrl",
+      "@type": "@id"
+    },
+    "story-stops": {
+      "@id": "reilp:storyStops",
+      "@container": "@set"
+    },
+    "designated-area": {
+      "@id": "reilp:designatedArea",
+      "@type": "xsd:boolean"
+    },
+    "designations": {
+      "@id": "reilp:designations",
+      "@container": "@set"
+    },
+    "land-type": "reilp:landType",
+    "overall-status": "reilp:overallStatus",
+    "land-assembly": "reilp:landAssembly",
+    "owner-vision": "reilp:ownerVision",
+    "policy-alignment-local": {
+      "@id": "reilp:policyAlignmentLocal",
+      "@type": "@json"
+    },
+    "policy-alignment-regional": {
+      "@id": "reilp:policyAlignmentRegional",
+      "@type": "@json"
+    },
+    "policy-alignment-national": {
+      "@id": "reilp:policyAlignmentNational",
+      "@type": "@json"
+    },
+    "economic-drivers": {
+      "@id": "reilp:economicDrivers",
+      "@container": "@set"
+    },
+    "gva-uplift": {
+      "@id": "reilp:gvaUplift",
+      "@type": "xsd:decimal"
+    },
+    "gva-method": "reilp:gvaMethod",
+    "gva-source": "reilp:gvaSource",
+    "gva-date": {
+      "@id": "reilp:gvaDate",
+      "@type": "xsd:date"
+    },
+    "investment-value": {
+      "@id": "reilp:investmentValue",
+      "@type": "xsd:decimal"
+    },
+    "value-type": "reilp:valueType",
+    "value-source": "reilp:valueSource",
+    "value-date": {
+      "@id": "reilp:valueDate",
+      "@type": "xsd:date"
+    },
+    "funding-status": "reilp:fundingStatus",
+    "contacts": {
+      "@id": "reilp:contacts",
+      "@type": "@json"
+    },
+    "investors": {
+      "@id": "reilp:investors",
+      "@type": "@json"
+    },
+    "model-commissioner": "reilp:modelCommissioner",
+    "published-with-consent": {
+      "@id": "reilp:publishedWithConsent",
+      "@container": "@set"
+    },
+    "start-date": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    "end-date": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "entry-date": {
+      "@id": "dct:modified",
+      "@type": "xsd:date"
+    },
+    "source": "dct:source",
+    "licence": "dct:license",
+    "@base": "https://example.org/reilp-ds/locations"
+  },
+  "type": "FeatureCollection",
+  "standard": {
+    "name": "REILP-DS",
+    "version": "0.1-draft"
+  },
+  "publisher": "Example Business Group (fictional)",
+  "licence": "CC-BY-4.0",
+  "base": "https://example.org/reilp-ds/locations",
+  "changelog": [
+    {
+      "date": "2026-10-18",
+      "note": "Fictional example for REILP-DS 0.1-draft. Every name, number and reference in it is invented."
+    }
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "#example-area",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.312,
+              51.498
+            ],
+            [
+              -0.288,
+              51.498
+            ],
+            [
+              -0.288,
+              51.522
+            ],
+            [
+              -0.312,
+              51.522
+            ],
+            [
+              -0.312,
+              51.498
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "opportunity-area",
+        "name": "Example Opportunity Area (fictional)",
+        "description": "An invented opportunity area used to show how REILP-DS records fit together. It does not describe a real place.",
+        "local-authorities": [
+          "E09000009"
+        ],
+        "point": [
+          -0.3,
+          51.51
+        ],
+        "hectares": 640,
+        "designated-area": true,
+        "designations": [
+          "Opportunity Area (fictional)"
+        ],
+        "land-type": "mixed",
+        "economic-drivers": [
+          "creative-tech",
+          "immersive-media"
+        ],
+        "entry-date": "2026-10-18",
+        "source": "Fictional example"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "#example-cluster",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.3,
+              51.508
+            ],
+            [
+              -0.292,
+              51.508
+            ],
+            [
+              -0.292,
+              51.516
+            ],
+            [
+              -0.3,
+              51.516
+            ],
+            [
+              -0.3,
+              51.508
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "cluster",
+        "parent": "#example-area",
+        "name": "Example Business Park cluster (fictional)",
+        "local-authorities": [
+          "E09000009"
+        ],
+        "organisation": "Example Development Partnership (fictional)",
+        "opportunity-area": "Example Opportunity Area (fictional)",
+        "hectares": 38.5,
+        "ownership-status": "mixed ownership",
+        "land-type": "brownfield-greyfield",
+        "overall-status": "in-progress-master-planning",
+        "land-assembly": "partly-assembled",
+        "owner-vision": "emerging",
+        "economic-drivers": [
+          "creative-tech",
+          "design"
+        ],
+        "entry-date": "2026-10-18",
+        "source": "Fictional example"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "#example-site",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.2965,
+              51.511
+            ],
+            [
+              -0.2935,
+              51.511
+            ],
+            [
+              -0.2935,
+              51.514
+            ],
+            [
+              -0.2965,
+              51.514
+            ],
+            [
+              -0.2965,
+              51.511
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "site",
+        "parent": "#example-cluster",
+        "name": "Example Works site (fictional)",
+        "description": "A former light-industrial site with outline consent for homes and workspace. The figures are invented to show each field in use.",
+        "local-authorities": [
+          "E09000009"
+        ],
+        "point": [
+          -0.295,
+          51.5125
+        ],
+        "hectares": 4.2,
+        "ownership-status": "not owned by a public authority",
+        "planning-references": [
+          "000000/OUT/2025 (fictional)"
+        ],
+        "planning-documents-url": "https://example.org/planning/000000",
+        "planning-status": "permissioned",
+        "permission-type": "outline planning permission",
+        "permission-date": "2025-06-30",
+        "homes-consented": 450,
+        "floorspace-consented": {
+          "C3": 31500,
+          "E(g)(i)": 12000
+        },
+        "homes-pipeline": 200,
+        "land-type": "brownfield",
+        "overall-status": "in-progress-master-planning",
+        "land-assembly": "assembled",
+        "owner-vision": "clear",
+        "policy-alignment-local": {
+          "alignment": "aligned",
+          "policy": "Example Local Plan 2024, policy SP1 (fictional)",
+          "assessed-by": "Example Business Group (fictional)",
+          "assessed-date": "2026-10-01"
+        },
+        "policy-alignment-regional": {
+          "alignment": "partly-aligned",
+          "policy": "Example regional plan, policy G1 (fictional)",
+          "assessed-by": "Example Business Group (fictional)",
+          "assessed-date": "2026-10-01"
+        },
+        "policy-alignment-national": {
+          "alignment": "not-assessed"
+        },
+        "economic-drivers": [
+          "creative-tech",
+          "design"
+        ],
+        "gva-uplift": 25000000,
+        "gva-method": "net-additional",
+        "gva-source": "Fictional example; not a real estimate",
+        "gva-date": "2026-09-01",
+        "investment-value": 350000000,
+        "value-type": "gdv",
+        "value-source": "Fictional example; not a real figure",
+        "value-date": "2026-09-01",
+        "funding-status": "partly-secured",
+        "published-with-consent": [
+          "owner-vision",
+          "funding-status"
+        ],
+        "contacts": [
+          {
+            "role": "Investment enquiries",
+            "email": "invest@example.org"
+          }
+        ],
+        "investors": [
+          {
+            "name": "Example Developer Ltd (fictional)",
+            "url": "https://example.org"
+          }
+        ],
+        "model-commissioner": "Example Developer Ltd (fictional)",
+        "model-url": "https://example.org/models/example-works.glb",
+        "story-stops": [
+          "story-stop-01",
+          "story-stop-02"
+        ],
+        "start-date": "2025-06-30",
+        "entry-date": "2026-10-18",
+        "source": "Fictional example"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "#example-works-block-a",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.29550000000000004,
+              51.512299999999996
+            ],
+            [
+              -0.2949,
+              51.512299999999996
+            ],
+            [
+              -0.2949,
+              51.5129
+            ],
+            [
+              -0.29550000000000004,
+              51.5129
+            ],
+            [
+              -0.29550000000000004,
+              51.512299999999996
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "building",
+        "parent": "#example-site",
+        "name": "Example Works, Block A (fictional)",
+        "planning-references": [
+          "000000/OUT/2025 (fictional)"
+        ],
+        "homes-consented": 180,
+        "storeys": 12,
+        "height-m": 41.5,
+        "model-tier": "massing",
+        "overall-status": "in-progress-master-planning",
+        "entry-date": "2026-10-18",
+        "source": "Fictional example"
+      }
+    }
+  ]
+}

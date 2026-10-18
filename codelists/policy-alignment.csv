@@ -1,0 +1,5 @@
+value,label,definition,source
+aligned,Aligned,The vision is consistent with the policy cited.,REILP-DS
+partly-aligned,Partly aligned,Parts of the vision are consistent with the policy cited.,REILP-DS
+not-aligned,Not aligned,The vision conflicts with the policy cited.,REILP-DS
+not-assessed,Not assessed,No assessment has been made.,REILP-DS

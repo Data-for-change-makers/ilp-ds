@@ -1,0 +1,7 @@
+value,label,definition,source
+stalled,Stalled,Work has stopped and no date to restart is known.,REILP-DS
+in-progress-visioning,In progress: visioning,The owner is forming a vision for the location.,REILP-DS
+in-progress-master-planning,In progress: master planning,A masterplan is being prepared.,REILP-DS
+in-progress-committee,In progress: committee,An application is with the planning authority or awaiting a committee decision.,REILP-DS
+in-progress-construction,In progress: construction,Construction has started.,REILP-DS
+complete,Complete,Construction is finished.,REILP-DS
