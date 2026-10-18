@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.2-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.3-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -24,14 +24,21 @@ The key words MUST, SHOULD and MAY are used as in [RFC 2119](https://www.rfc-edi
 
 ## 2. Records
 
-A profile is made of records at four levels, each linked to the level above by `parent`:
+A profile is made of records of six kinds. Places are linked to the level above by `parent`;
+infrastructure is linked to the places it serves by `serves`:
 
 | Kind | What it is | Parent |
 | --- | --- | --- |
 | `opportunity-area` | A large area designated or promoted for growth, such as a GLA Opportunity Area | none |
 | `cluster` | Neighbouring sites promoted together as one opportunity | an opportunity area, or none |
 | `site` | A single development site | a cluster or an opportunity area, or none |
-| `building` | An existing or proposed building, usually in a 3D model | a site or a cluster (required) |
+| `mineral-extraction-site` | A site where minerals such as sand and gravel are or will be extracted | a cluster or an opportunity area, or none |
+| `infrastructure` | A route or network, such as a railway line or heat network, that serves several places | an opportunity area, or none |
+| `building` | An existing or proposed building, usually in a 3D model | a site, cluster, mineral extraction site or infrastructure (required) |
+
+An infrastructure record usually crosses several areas, so instead of one parent it lists the
+ids of the areas, clusters and sites it serves in `serves`. A proposed orbital railway, for
+example, serves each opportunity area it would connect.
 
 Each fact is held once, at the level it belongs to, and linked rather than copied. A change to a
 site's planning status therefore reaches the map, the 3D model and the open feed without editing
@@ -39,13 +46,13 @@ any of them separately.
 
 ## 3. The file
 
-A ILP-DS file is a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) FeatureCollection,
+An ILP-DS file is a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) FeatureCollection,
 so any GIS or web map can open it. Each record is one Feature.
 
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.2-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.3-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -56,6 +63,8 @@ so any GIS or web map can open it. Each record is one Feature.
 
 Each Feature has `type` (`Feature`), `id`, `geometry` and `properties`. `geometry` is a Point,
 Polygon or MultiPolygon in WGS84 longitude and latitude, or `null` where no boundary is known.
+Infrastructure may also be a LineString or MultiLineString, such as the route of a railway;
+other kinds may not.
 `properties` holds the fields in [fields.md](fields.md).
 
 ### 3.1 Identifiers
@@ -86,7 +95,8 @@ required, who may see it, and where it comes from. In summary:
 - **Every record except a building** needs `local-authorities`.
 - **A building** needs `parent`.
 - Paired fields travel together: `gva-uplift` needs `gva-method`, `gva-source` and `gva-date`;
-  `investment-value` needs `value-type`, `value-source` and `value-date`.
+  `investment-value` needs `value-type`, `value-source` and `value-date`; `jobs-to` needs
+  `jobs-from`.
 - `description` has at most 400 words.
 
 ### 4.1 Local authorities and planning authorities
@@ -134,19 +144,48 @@ Asset class is not the same as `economic-drivers`, which names the sectors expec
 demand, or `floorspace-consented`, which uses planning use classes. Further classes, such as
 hotels, healthcare, water and waste, and social infrastructure, may be added.
 
-### 4.4 Vision and consent
+### 4.4 Economic drivers
+
+`economic-drivers` names the sectors expected to create demand. The list starts from the West
+London Alliance's six priority growth sectors: `createch` (screen, media and creative
+technology), `frontier-innovation`, `advanced-manufacturing`, `clean-energy`, `digital` and
+`heathrow-linked-industries`. Finer values, such as `creative-tech`, `immersive-media`, `design`
+and `fashiontech`, sit under `createch` in the code list's group column.
+
+Asset classes and economic drivers are kept as separate fields, because they answer different
+questions: what an investor can buy, and where demand comes from. Both drive the return, so a
+display MAY show them together under one heading, such as "Drivers".
+
+### 4.5 Status and stage
+
+`overall-status` says whether a development is moving: `stalled`, `in-progress` or `complete`.
+`delivery-stage` says how far it has got, where that is known: `visioning`, `master-planning`,
+`committee` or `construction`. Keeping them apart lets a record say "in progress" when that is
+all a source states, and lets a site be stalled at a known stage.
+
+A whole opportunity area usually has schemes at several stages at once, so it normally has an
+`overall-status` and no `delivery-stage`; the stage belongs on its clusters and sites. A complete
+development has no delivery stage.
+
+### 4.6 Vision and consent
 
 Consented figures (`homes-consented`, `floorspace-consented`) and the owner's further vision
 (`homes-pipeline`, `floorspace-pipeline`) are kept apart. Displays MUST label pipeline figures
 as a vision, not a consent.
 
-### 4.5 Estimates
+Jobs are recorded as the source states them. A single figure goes in `jobs-from`; a range such
+as "14,000 to 25,000 jobs" goes in `jobs-from` and `jobs-to`. This follows the brownfield land
+data standard, which records dwellings as a range from and to, and keeps the figures usable for
+sorting and totals.
+
+### 4.7 Estimates
 
 GVA estimates vary widely with the method used (gross or net additional, the period, the
 allowance for displacement). A GVA figure MUST carry its method, source and date, and an
-investment figure its type, source and date.
+investment figure its type, source and date. Where a source gives a GVA figure without a
+method, `gva-method` is `not-stated`, and displays MUST say so beside the figure.
 
-### 4.6 Publishers' own fields
+### 4.8 Publishers' own fields
 
 A publisher MAY add fields of its own, named with an `x-` prefix, such as `x-discover-colour`.
 Checkers ignore them. Anything another publisher would also need should be proposed for the
@@ -211,6 +250,7 @@ publishing or relying on ILP-DS data.
 | [GLA Planning Information Data Standard](https://london.gov.uk/sites/default/files/updated_non_technical_planning_data_standard.pdf) | `planning-references`, `homes-consented`, `floorspace-consented` |
 | [GLA Opportunity Areas](https://data.london.gov.uk/dataset/opportunity-areas-epr7z) | `opportunity-area` names |
 | ONS GSS codes | `local-authorities` |
+| West London Alliance, Opportunity West London investment prospectus 2026/27 | The six priority growth sectors in the `economic-driver` code list |
 | Opportunity London asset classes | The `asset-class` code list |
 | [GRESB asset classification](https://guides.gresb.com/completingassessments/2026-real-estate-assessment/info/asset-and-portfolio-classification) (real estate) and [infrastructure sectors](https://guides.gresb.com/completing-gresb-assessments/completing-the-assessment/supporting-information/asset-classification) | The GRESB equivalents in the `asset-class` code list |
 | [OS Open Identifiers](https://www.ordnancesurvey.co.uk/products/open-mastermap-programme/open-id-policy) | `toid`, `uprns` |

@@ -1,7 +1,4 @@
 value,label,definition,source
 stalled,Stalled,Work has stopped and no date to restart is known.,ILP-DS
-in-progress-visioning,In progress: visioning,The owner is forming a vision for the location.,ILP-DS
-in-progress-master-planning,In progress: master planning,A masterplan is being prepared.,ILP-DS
-in-progress-committee,In progress: committee,An application is with the planning authority or awaiting a committee decision.,ILP-DS
-in-progress-construction,In progress: construction,Construction has started.,ILP-DS
+in-progress,In progress,Work is under way. Record the stage in delivery-stage where it is known.,ILP-DS
 complete,Complete,Construction is finished.,ILP-DS

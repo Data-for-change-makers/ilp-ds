@@ -1,4 +1,4 @@
-"""Make the public copy of a ILP-DS file.
+"""Make the public copy of an ILP-DS file.
 
 Usage:
     python tools/export_public.py INTERNAL_FILE PUBLIC_FILE

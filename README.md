@@ -5,7 +5,7 @@ investor needs about a place to invest in, in real estate or infrastructure: opp
 clusters, sites and buildings, their asset classes, planning status, land type, economic drivers
 and funding, linked to maps and 3D models.
 
-> **Status: 0.2-draft.** We are in the early stages of exploring this standard. Names, fields and
+> **Status: 0.3-draft.** We are in the early stages of exploring this standard. Names, fields and
 > code lists may change in any 0.x release, so do not use it for production data yet.
 
 ILP-DS is an initiative of [West London Business](https://www.westlondon.com), part of
@@ -18,8 +18,9 @@ and renamed when its scope widened to infrastructure.
 
 ## What it does
 
-- **One record per place, at four levels**: opportunity area, cluster, site and building,
-  each linked to the level above. Each fact is held once.
+- **One record per place**: opportunity areas, clusters, sites and buildings, each linked to
+  the level above, plus mineral extraction sites and infrastructure such as railway lines,
+  linked to the places they serve. Each fact is held once.
 - **Built on existing standards.** Identifiers, planning fields and code lists come from the
   Planning Data platform, the brownfield land data standard, the GLA's planning data standard,
   ONS and Ordnance Survey. ILP-DS adds only what none of them covers.

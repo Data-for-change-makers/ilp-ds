@@ -16,10 +16,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2-draft"
+VERSION = "0.3-draft"
 NAMESPACE = "https://dataforchangemakers.org.uk/ns/ilp-ds#"
 SCHEMA_ID = "https://raw.githubusercontent.com/Data-for-change-makers/ilp-ds/main/schema/ilp-ds.schema.json"
-KINDS = ["opportunity-area", "cluster", "site", "building"]
+KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction-site", "infrastructure", "building"]
 
 ID_PATTERN = r"^#[a-z0-9]+(-[a-z0-9]+)*$"
 DATE = {"type": "string", "format": "date", "pattern": r"^\d{4}-\d{2}-\d{2}$"}
@@ -74,6 +74,9 @@ def field_schema(field: dict[str, str], restricted: list[str]) -> dict:
             schema["maxLength"] = 4000  # the 400-word limit itself is checked by tools/check_ilp.py
     elif kind == "id":
         schema = {"type": "string", "pattern": ID_PATTERN}
+    elif kind == "ids":
+        schema = {"type": "array", "minItems": 1, "uniqueItems": True,
+                  "items": {"type": "string", "pattern": ID_PATTERN}}
     elif kind == "integer":
         schema = {"type": "integer", "minimum": 0}
     elif kind == "number":
@@ -156,6 +159,7 @@ def build_schema() -> dict:
     position = {"type": "array", "minItems": 2, "maxItems": 3, "items": {"type": "number"}}
     ring = {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/position"}}
     polygon = {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ring"}}
+    line = {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/position"}}
 
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -200,6 +204,11 @@ def build_schema() -> dict:
                         {"type": "object", "required": ["type", "coordinates"], "additionalProperties": False,
                          "properties": {"type": {"const": "MultiPolygon"},
                                         "coordinates": {"type": "array", "minItems": 1, "items": polygon}}},
+                        {"type": "object", "required": ["type", "coordinates"], "additionalProperties": False,
+                         "properties": {"type": {"const": "LineString"}, "coordinates": line}},
+                        {"type": "object", "required": ["type", "coordinates"], "additionalProperties": False,
+                         "properties": {"type": {"const": "MultiLineString"},
+                                        "coordinates": {"type": "array", "minItems": 1, "items": line}}},
                     ]},
                     "properties": {"$ref": "#/$defs/properties"},
                 },
@@ -213,6 +222,7 @@ def build_schema() -> dict:
                 "dependentRequired": {
                     "gva-uplift": ["gva-method", "gva-source", "gva-date"],
                     "investment-value": ["value-type", "value-source", "value-date"],
+                    "jobs-to": ["jobs-from"],
                 },
                 "allOf": conditions,
             },
@@ -240,6 +250,8 @@ def build_context() -> dict:
         "Point": "geojson:Point",
         "Polygon": "geojson:Polygon",
         "MultiPolygon": "geojson:MultiPolygon",
+        "LineString": "geojson:LineString",
+        "MultiLineString": "geojson:MultiLineString",
         "features": {"@id": "geojson:features", "@container": "@set"},
         "geometry": "geojson:geometry",
         "coordinates": {"@id": "geojson:coordinates", "@container": "@list"},
@@ -263,6 +275,8 @@ def build_context() -> dict:
             ctx[name] = {"@id": iri, "@type": "xsd:boolean"}
         elif kind in ("id",):
             ctx[name] = {"@id": iri, "@type": "@id"}
+        elif kind in ("ids",):
+            ctx[name] = {"@id": iri, "@type": "@id", "@container": "@set"}
         elif kind in ("uri",):
             ctx[name] = {"@id": iri, "@type": "@id"}
         elif kind in ("lon-lat",):
@@ -317,7 +331,8 @@ def build_field_docs() -> str:
         rows = read_csv(path)
         extra = [c for c in rows[0] if c not in ("value", "label", "definition", "source")]
         headings = {"group": "Group", "gresb": "GRESB equivalent"}
-        lines += [f"### {path.stem}", "", f"File: `codelists/{path.name}`. Source: {rows[0]['source']}.", "",
+        sources = "; ".join(dict.fromkeys(r["source"] for r in rows))
+        lines += [f"### {path.stem}", "", f"File: `codelists/{path.name}`. Source: {sources}.", "",
                   "| Value | Label | Definition |" + "".join(f" {headings.get(c, c)} |" for c in extra),
                   "| --- | --- | --- |" + " --- |" * len(extra)]
         lines += [f"| `{r['value']}` | {r['label']} | {r['definition']} |" + "".join(f" {r[c]} |" for c in extra)

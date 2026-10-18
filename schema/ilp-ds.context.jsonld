@@ -13,6 +13,8 @@
     "Point": "geojson:Point",
     "Polygon": "geojson:Polygon",
     "MultiPolygon": "geojson:MultiPolygon",
+    "LineString": "geojson:LineString",
+    "MultiLineString": "geojson:MultiLineString",
     "features": {
       "@id": "geojson:features",
       "@container": "@set"
@@ -35,6 +37,11 @@
     "parent": {
       "@id": "ilp:parent",
       "@type": "@id"
+    },
+    "serves": {
+      "@id": "ilp:serves",
+      "@type": "@id",
+      "@container": "@set"
     },
     "name": "schema:name",
     "description": "schema:description",
@@ -84,6 +91,14 @@
       "@id": "ilp:floorspacePipeline",
       "@type": "@json"
     },
+    "jobs-from": {
+      "@id": "ilp:jobsFrom",
+      "@type": "xsd:integer"
+    },
+    "jobs-to": {
+      "@id": "ilp:jobsTo",
+      "@type": "xsd:integer"
+    },
     "toid": "ilp:toid",
     "uprns": {
       "@id": "ilp:uprns",
@@ -116,6 +131,7 @@
     },
     "land-type": "ilp:landType",
     "overall-status": "ilp:overallStatus",
+    "delivery-stage": "ilp:deliveryStage",
     "land-assembly": "ilp:landAssembly",
     "owner-vision": "ilp:ownerVision",
     "policy-alignment-local": {
