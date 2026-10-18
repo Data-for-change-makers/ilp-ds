@@ -8,6 +8,9 @@ express:
 
 * every id is unique, and every parent names a record in the same file;
 * a parent is one level up (a building's parent is a site or cluster, and so on);
+* every id in serves names a record in the same file;
+* only infrastructure has a line shape;
+* jobs-to is not below jobs-from, and a complete development has no delivery stage;
 * a description has no more than 400 words;
 * the JSON-LD @base, if given, matches the file's base;
 * a file marked "public": true carries no internal fields, and carries a restricted field
@@ -38,8 +41,11 @@ PARENT_KINDS = {
     "opportunity-area": set(),
     "cluster": {"opportunity-area"},
     "site": {"opportunity-area", "cluster"},
-    "building": {"cluster", "site"},
+    "mineral-extraction-site": {"opportunity-area", "cluster"},
+    "infrastructure": {"opportunity-area"},
+    "building": {"cluster", "site", "mineral-extraction-site", "infrastructure"},
 }
+LINES = {"LineString", "MultiLineString"}
 
 
 def context_base(context) -> str | None:
@@ -68,10 +74,12 @@ def check_document(doc: dict) -> list[str]:
         problems.append(f"(file): @base in @context is {base!r} but base is {doc['base']!r}")
 
     records = {}
+    shapes = {}
     for feature in doc["features"]:
         if feature["id"] in records:
             problems.append(f"{feature['id']}: id is used more than once")
         records[feature["id"]] = feature["properties"]
+        shapes[feature["id"]] = (feature["geometry"] or {}).get("type")
 
     public = doc.get("public", False)
     for rid, props in records.items():
@@ -83,6 +91,21 @@ def check_document(doc: dict) -> list[str]:
                 problems.append(f"{rid}: parent {parent} is not in this file")
             elif records[parent]["kind"] not in PARENT_KINDS[props["kind"]]:
                 problems.append(f"{rid}: a {props['kind']} cannot have a {records[parent]['kind']} as its parent")
+
+        for served in props.get("serves", []):
+            if served == rid:
+                problems.append(f"{rid}: infrastructure cannot serve itself")
+            elif served not in records:
+                problems.append(f"{rid}: serves {served}, which is not in this file")
+
+        if shapes[rid] in LINES and props["kind"] != "infrastructure":
+            problems.append(f"{rid}: only infrastructure can have a {shapes[rid]} shape")
+
+        if "jobs-to" in props and props["jobs-to"] < props.get("jobs-from", 0):
+            problems.append(f"{rid}: jobs-to ({props['jobs-to']}) is below jobs-from ({props['jobs-from']})")
+
+        if props.get("overall-status") == "complete" and "delivery-stage" in props:
+            problems.append(f"{rid}: a complete development has no delivery-stage")
 
         words = len(props.get("description", "").split())
         if words > MAX_WORDS:

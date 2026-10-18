@@ -213,3 +213,72 @@ def test_public_example_expands_as_json_ld():
     ns = build_schema.NAMESPACE
     assert site[ns + "landType"][0]["@value"] == "brownfield"
     assert site[ns + "parent"][0]["@id"] == "https://example.org/ilp-ds/locations#example-cluster"
+
+
+# 0.3: infrastructure, mineral extraction sites, jobs, status and stage
+
+def test_infrastructure_with_line_and_serves_passes(doc):
+    line = next(f for f in doc["features"] if f["id"] == "#example-link-line")
+    assert line["geometry"]["type"] == "LineString"
+    assert check_document(doc) == []
+
+
+def test_line_shape_only_for_infrastructure(doc):
+    site = next(f for f in doc["features"] if f["id"] == "#example-site")
+    site["geometry"] = {"type": "LineString", "coordinates": [[-0.3, 51.5], [-0.29, 51.51]]}
+    assert any("only infrastructure" in p for p in check_document(doc))
+
+
+def test_serves_must_name_records_in_the_file(doc):
+    record(doc, "#example-link-line")["serves"] = ["#nowhere"]
+    assert any("not in this file" in p for p in check_document(doc))
+
+
+def test_serves_only_on_infrastructure(doc):
+    record(doc, "#example-site")["serves"] = ["#example-area"]
+    assert check_document(doc)
+
+
+def test_mineral_extraction_site_is_a_valid_kind(doc):
+    doc["features"].append({"type": "Feature", "id": "#example-quarry", "geometry": None, "properties": {
+        "kind": "mineral-extraction-site", "parent": "#example-area", "name": "Example Quarry (fictional)",
+        "local-authorities": ["E09000017"], "land-type": "greenfield", "overall-status": "in-progress",
+        "delivery-stage": "committee", "entry-date": "2026-10-18", "source": "Fictional example"}})
+    assert check_document(doc) == []
+
+
+def test_jobs_range(doc):
+    area = record(doc, "#example-area")
+    assert (area["jobs-from"], area["jobs-to"]) == (14000, 25000)
+    area["jobs-to"] = 1000
+    assert any("below jobs-from" in p for p in check_document(doc))
+
+
+def test_jobs_to_needs_jobs_from(doc):
+    site = record(doc, "#example-site")
+    del site["jobs-from"]
+    site["jobs-to"] = 2000
+    assert any("jobs-from" in p for p in check_document(doc))
+
+
+def test_old_combined_status_values_are_rejected(doc):
+    record(doc, "#example-site")["overall-status"] = "in-progress-master-planning"
+    assert any("overall-status" in p for p in check_document(doc))
+
+
+def test_complete_has_no_delivery_stage(doc):
+    site = record(doc, "#example-site")
+    site["overall-status"] = "complete"
+    assert any("no delivery-stage" in p for p in check_document(doc))
+
+
+def test_gva_method_can_be_not_stated(doc):
+    record(doc, "#example-site")["gva-method"] = "not-stated"
+    assert check_document(doc) == []
+
+
+def test_wla_priority_sectors_are_in_the_economic_driver_list():
+    with (ROOT / "codelists" / "economic-driver.csv").open(newline="", encoding="utf-8") as handle:
+        values = {row["value"] for row in csv.DictReader(handle)}
+    assert {"createch", "frontier-innovation", "advanced-manufacturing", "clean-energy", "digital",
+            "heathrow-linked-industries"} <= values

@@ -1,3 +1,4 @@
 value,label,definition,source
 gross,Gross,Gross value added before any adjustment for additionality.,ILP-DS
 net-additional,Net additional,"Gross value added adjusted for deadweight, leakage, displacement and multiplier effects, as in the HM Treasury Green Book.",ILP-DS
+not-stated,Not stated,"The source gives no method. Show the figure with ""method not stated"".",ILP-DS

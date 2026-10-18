@@ -13,6 +13,8 @@
     "Point": "geojson:Point",
     "Polygon": "geojson:Polygon",
     "MultiPolygon": "geojson:MultiPolygon",
+    "LineString": "geojson:LineString",
+    "MultiLineString": "geojson:MultiLineString",
     "features": {
       "@id": "geojson:features",
       "@container": "@set"
@@ -35,6 +37,11 @@
     "parent": {
       "@id": "ilp:parent",
       "@type": "@id"
+    },
+    "serves": {
+      "@id": "ilp:serves",
+      "@type": "@id",
+      "@container": "@set"
     },
     "name": "schema:name",
     "description": "schema:description",
@@ -84,6 +91,14 @@
       "@id": "ilp:floorspacePipeline",
       "@type": "@json"
     },
+    "jobs-from": {
+      "@id": "ilp:jobsFrom",
+      "@type": "xsd:integer"
+    },
+    "jobs-to": {
+      "@id": "ilp:jobsTo",
+      "@type": "xsd:integer"
+    },
     "toid": "ilp:toid",
     "uprns": {
       "@id": "ilp:uprns",
@@ -116,6 +131,7 @@
     },
     "land-type": "ilp:landType",
     "overall-status": "ilp:overallStatus",
+    "delivery-stage": "ilp:deliveryStage",
     "land-assembly": "ilp:landAssembly",
     "owner-vision": "ilp:ownerVision",
     "policy-alignment-local": {
@@ -191,7 +207,7 @@
   "type": "FeatureCollection",
   "standard": {
     "name": "ILP-DS",
-    "version": "0.2-draft"
+    "version": "0.3-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
@@ -199,7 +215,7 @@
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for ILP-DS 0.2-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.3-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
@@ -259,8 +275,11 @@
           "creative-tech",
           "immersive-media"
         ],
+        "jobs-from": 14000,
+        "jobs-to": 25000,
         "entry-date": "2026-10-18",
-        "source": "Fictional example"
+        "source": "Fictional example",
+        "overall-status": "in-progress"
       }
     },
     {
@@ -305,7 +324,8 @@
         "hectares": 38.5,
         "ownership-status": "mixed ownership",
         "land-type": "brownfield-greyfield",
-        "overall-status": "in-progress-master-planning",
+        "overall-status": "in-progress",
+        "delivery-stage": "master-planning",
         "asset-classes": [
           "commercial",
           "experience-economy"
@@ -375,8 +395,10 @@
           "E(g)(i)": 12000
         },
         "homes-pipeline": 200,
+        "jobs-from": 1200,
         "land-type": "brownfield",
-        "overall-status": "in-progress-master-planning",
+        "overall-status": "in-progress",
+        "delivery-stage": "master-planning",
         "owner-vision": "clear",
         "asset-classes": [
           "living",
@@ -466,7 +488,53 @@
         "asset-classes": [
           "living"
         ],
-        "overall-status": "in-progress-master-planning",
+        "overall-status": "in-progress",
+        "delivery-stage": "master-planning",
+        "entry-date": "2026-10-18",
+        "source": "Fictional example"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "#example-link-line",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.32,
+            51.5
+          ],
+          [
+            -0.305,
+            51.508
+          ],
+          [
+            -0.296,
+            51.512
+          ],
+          [
+            -0.28,
+            51.52
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "infrastructure",
+        "serves": [
+          "#example-area",
+          "#example-cluster"
+        ],
+        "name": "Example Link Line (fictional)",
+        "description": "An invented passenger rail line used to show how infrastructure records connect the places they serve.",
+        "local-authorities": [
+          "E09000009"
+        ],
+        "organisation": "Example Transport Authority (fictional)",
+        "asset-classes": [
+          "transport"
+        ],
+        "overall-status": "in-progress",
+        "delivery-stage": "visioning",
         "entry-date": "2026-10-18",
         "source": "Fictional example"
       }

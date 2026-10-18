@@ -2,6 +2,22 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.3-draft — 18 October 2026
+
+Changes found while preparing the first West London data from the West London Alliance's
+Opportunity West London investment prospectus 2026/27.
+
+- New kinds `infrastructure` (routes and networks, which may have a LineString or
+  MultiLineString shape and list the places they connect in the new `serves` field) and
+  `mineral-extraction-site`.
+- `overall-status` is now `stalled`, `in-progress` or `complete`, and a new `delivery-stage`
+  field holds `visioning`, `master-planning`, `committee` or `construction`. The combined values
+  such as `in-progress-master-planning` are withdrawn.
+- New fields `jobs-from` and `jobs-to`, so a range of jobs can be recorded.
+- `gva-method` gains `not-stated`, for figures whose source gives no method.
+- The `economic-driver` code list now starts from WLA's six priority growth sectors, with the
+  earlier values grouped under `createch`.
+
 ## 0.2-draft — 18 October 2026
 
 - Renamed from REILP-DS (Real Estate Investment Location Profile-Data Standard) to ILP-DS

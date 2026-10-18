@@ -1,5 +1,11 @@
-value,label,definition,source
-creative-tech,Creative technology,,ILP-DS
-immersive-media,Immersive media,,ILP-DS
-design,Design,,ILP-DS
-fashiontech,Fashion technology,,ILP-DS
+value,label,definition,source,group
+createch,"Screen, media and creative technology (createch)","Screen, media and creative technology, including immersive experience, creative AI and advanced digital media.","WLA, Opportunity West London 2026/27, priority growth sectors",
+frontier-innovation,Frontier innovation,"Deep tech, life sciences, medtech, cleantech, security and related research.","WLA, Opportunity West London 2026/27, priority growth sectors",
+advanced-manufacturing,Advanced manufacturing,"Robotics, materials, scientific instrumentation, aerospace-linked activity and advanced food technology.","WLA, Opportunity West London 2026/27, priority growth sectors",
+clean-energy,Clean energy,"Low-carbon freight, hydrogen, carbon reduction in manufacturing, heat networks and low-carbon development.","WLA, Opportunity West London 2026/27, priority growth sectors",
+digital,Digital,"Data centres, IT hardware and software.","WLA, Opportunity West London 2026/27, priority growth sectors",
+heathrow-linked-industries,Heathrow-linked industries,"Aviation, air freight, logistics and supply chains linked to Heathrow.","WLA, Opportunity West London 2026/27, priority growth sectors",
+creative-tech,Creative technology,,ILP-DS,createch
+immersive-media,Immersive media,,ILP-DS,createch
+design,Design,,ILP-DS,createch
+fashiontech,Fashion technology,,ILP-DS,createch
