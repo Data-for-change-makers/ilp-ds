@@ -2,6 +2,6 @@ value,label,definition,source
 opportunity-area,Opportunity area,"A large area designated or promoted for growth, such as a GLA Opportunity Area.",ILP-DS
 cluster,Cluster,A group of neighbouring sites promoted together as one investment opportunity.,ILP-DS
 site,Site,"A single development site, which may hold one or more buildings.",ILP-DS
-mineral-extraction-site,Mineral extraction site,"A site where minerals such as sand and gravel are or will be extracted, usually followed by restoration.",ILP-DS
+mineral-extraction,Mineral extraction,"A site where minerals such as sand and gravel are or will be extracted, usually followed by restoration.",ILP-DS
 infrastructure,Infrastructure,"A route or network, such as a railway line or heat network, that serves several places rather than sitting within one.",ILP-DS
 building,Building,"An existing or proposed building, usually shown in a 3D model.",ILP-DS

@@ -239,9 +239,9 @@ def test_serves_only_on_infrastructure(doc):
     assert check_document(doc)
 
 
-def test_mineral_extraction_site_is_a_valid_kind(doc):
+def test_mineral_extraction_is_a_valid_kind(doc):
     doc["features"].append({"type": "Feature", "id": "#example-quarry", "geometry": None, "properties": {
-        "kind": "mineral-extraction-site", "parent": "#example-area", "name": "Example Quarry (fictional)",
+        "kind": "mineral-extraction", "parent": "#example-area", "name": "Example Quarry (fictional)",
         "local-authorities": ["E09000017"], "land-type": "greenfield", "overall-status": "in-progress",
         "delivery-stage": "committee", "entry-date": "2026-10-18", "source": "Fictional example"}})
     assert check_document(doc) == []
@@ -282,3 +282,27 @@ def test_wla_priority_sectors_are_in_the_economic_driver_list():
         values = {row["value"] for row in csv.DictReader(handle)}
     assert {"createch", "frontier-innovation", "advanced-manufacturing", "clean-energy", "digital",
             "heathrow-linked-industries"} <= values
+
+
+# 0.4: mineral extraction, investment required, named contacts
+
+def test_old_mineral_extraction_site_kind_is_rejected(doc):
+    record(doc, "#example-site")["kind"] = "mineral-extraction-site"
+    assert any("kind" in p for p in check_document(doc))
+
+
+def test_investment_required_is_a_value_type(doc):
+    site = record(doc, "#example-site")
+    site.update({"investment-value": 925000000, "value-type": "investment-required",
+                 "value-source": "Fictional prospectus, p1 ('c.£925m')", "value-date": "2026-07-01"})
+    assert check_document(doc) == []
+
+
+def test_a_named_contact_is_published(doc):
+    site = record(doc, "#example-site")
+    site["contacts"] = [{"name": "Alex Example (fictional)", "role": "Head of Regeneration",
+                         "email": "alex.example@example.org"}]
+    assert check_document(doc) == []
+    public = make_public(doc)[0]
+    assert check_document(public) == []
+    assert record(public, "#example-site")["contacts"][0]["name"] == "Alex Example (fictional)"

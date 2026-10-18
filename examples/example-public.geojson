@@ -207,7 +207,7 @@
   "type": "FeatureCollection",
   "standard": {
     "name": "ILP-DS",
-    "version": "0.3-draft"
+    "version": "0.4-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
@@ -215,7 +215,7 @@
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for ILP-DS 0.3-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.4-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
