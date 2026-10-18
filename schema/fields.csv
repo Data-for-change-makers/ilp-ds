@@ -1,58 +1,58 @@
 field,applies-to,type,required,visibility,origin,source,definition
 kind,all,code:kind,yes,public,core,ILP-DS,"The type of record: an area, cluster or site, a mineral extraction site, a building, or a route or network of infrastructure."
-parent,cluster site mineral-extraction-site infrastructure building,id,building,public,core,ILP-DS,"The id of the record one level up, in the same file. Required for a building."
+parent,cluster site mineral-extraction infrastructure building,id,building,public,core,ILP-DS,"The id of the record one level up, in the same file. Required for a building."
 serves,infrastructure,ids,no,public,core,ILP-DS,"The ids of the areas, clusters and sites the infrastructure serves or connects, in the same file."
 name,all,string,yes,public,adopted,Planning Data platform,The record's name.
 description,all,string,no,public,extension,ILP-DS,A narrative description of up to 400 words.
-organisation,opportunity-area cluster site mineral-extraction-site infrastructure,string,no,public,adopted,Planning Data platform,"The lead body: a Planning Data organisation reference where one exists, otherwise its name."
-local-authorities,opportunity-area cluster site mineral-extraction-site infrastructure,gss-codes,not building,public,adopted,ONS GSS codes,"The ONS GSS code of each council the record lies in, such as E09000009 for Ealing."
-planning-authority,opportunity-area cluster site mineral-extraction-site infrastructure,organisation-reference,no,public,adopted,Planning Data platform,"The planning authority's Planning Data organisation reference, where it differs from the council, such as development-corporation:Q20648596 for OPDC."
-opportunity-area,cluster site mineral-extraction-site building,string,no,public,adopted,GLA Opportunity Areas,"The name of the GLA Opportunity Area the record lies in, if any."
+organisation,opportunity-area cluster site mineral-extraction infrastructure,string,no,public,adopted,Planning Data platform,"The lead body: a Planning Data organisation reference where one exists, otherwise its name."
+local-authorities,opportunity-area cluster site mineral-extraction infrastructure,gss-codes,not building,public,adopted,ONS GSS codes,"The ONS GSS code of each council the record lies in, such as E09000009 for Ealing."
+planning-authority,opportunity-area cluster site mineral-extraction infrastructure,organisation-reference,no,public,adopted,Planning Data platform,"The planning authority's Planning Data organisation reference, where it differs from the council, such as development-corporation:Q20648596 for OPDC."
+opportunity-area,cluster site mineral-extraction building,string,no,public,adopted,GLA Opportunity Areas,"The name of the GLA Opportunity Area the record lies in, if any."
 point,all,lon-lat,no,public,adopted,Brownfield land data standard (GeoX and GeoY),"A representative point as [longitude, latitude] in WGS84."
-hectares,opportunity-area cluster site mineral-extraction-site,number,no,public,adopted,Brownfield land data standard (Hectares),The area in hectares.
-ownership-status,cluster site mineral-extraction-site,code:ownership-status,no,public,adopted,Brownfield land data standard (OwnershipStatus),Whether a public authority owns the land.
-planning-references,cluster site mineral-extraction-site building infrastructure,strings,no,public,adopted,GLA Planning Information Data Standard,The planning authority's application references for the consent or consents.
-planning-documents-url,cluster site mineral-extraction-site building infrastructure,uri,no,public,adopted,Brownfield land data standard (PlanningHistory),A link to the consent's documents on the planning authority's website.
-planning-status,cluster site mineral-extraction-site infrastructure,code:planning-status,no,public,adopted,Brownfield land data standard (PlanningStatus),Whether the record has planning permission.
-permission-type,cluster site mineral-extraction-site infrastructure,code:permission-type,no,public,adopted,Brownfield land data standard (PermissionType),The type of permission.
-permission-date,cluster site mineral-extraction-site infrastructure,date,no,public,adopted,Brownfield land data standard (PermissionDate),The date permission was granted. Displays may show the year only.
-homes-consented,cluster site mineral-extraction-site building,integer,no,public,adopted,GLA Planning Information Data Standard,The number of homes with planning consent.
-floorspace-consented,cluster site mineral-extraction-site building,floorspace,no,public,adopted,GLA Planning Information Data Standard,"Consented floorspace in square metres, by use class."
-homes-pipeline,cluster site mineral-extraction-site,integer,no,public,extension,ILP-DS,"The number of homes in the owner's vision beyond the consent. Display as a vision, not a consent."
-floorspace-pipeline,cluster site mineral-extraction-site,floorspace,no,public,extension,ILP-DS,"Floorspace in the owner's vision beyond the consent, in square metres by use class. Display as a vision, not a consent."
-jobs-from,opportunity-area cluster site mineral-extraction-site infrastructure,integer,no,public,extension,ILP-DS,"The number of jobs the development is expected to support, as the source states it. A single figure goes here; for a range, the lower figure."
-jobs-to,opportunity-area cluster site mineral-extraction-site infrastructure,integer,no,public,extension,ILP-DS,"The upper figure when the source gives a range of jobs, such as 25,000 in ""14,000 to 25,000 jobs"". Needs jobs-from."
+hectares,opportunity-area cluster site mineral-extraction,number,no,public,adopted,Brownfield land data standard (Hectares),The area in hectares.
+ownership-status,cluster site mineral-extraction,code:ownership-status,no,public,adopted,Brownfield land data standard (OwnershipStatus),Whether a public authority owns the land.
+planning-references,cluster site mineral-extraction building infrastructure,strings,no,public,adopted,GLA Planning Information Data Standard,The planning authority's application references for the consent or consents.
+planning-documents-url,cluster site mineral-extraction building infrastructure,uri,no,public,adopted,Brownfield land data standard (PlanningHistory),A link to the consent's documents on the planning authority's website.
+planning-status,cluster site mineral-extraction infrastructure,code:planning-status,no,public,adopted,Brownfield land data standard (PlanningStatus),Whether the record has planning permission.
+permission-type,cluster site mineral-extraction infrastructure,code:permission-type,no,public,adopted,Brownfield land data standard (PermissionType),The type of permission.
+permission-date,cluster site mineral-extraction infrastructure,date,no,public,adopted,Brownfield land data standard (PermissionDate),The date permission was granted. Displays may show the year only.
+homes-consented,cluster site mineral-extraction building,integer,no,public,adopted,GLA Planning Information Data Standard,The number of homes with planning consent.
+floorspace-consented,cluster site mineral-extraction building,floorspace,no,public,adopted,GLA Planning Information Data Standard,"Consented floorspace in square metres, by use class."
+homes-pipeline,cluster site mineral-extraction,integer,no,public,extension,ILP-DS,"The number of homes in the owner's vision beyond the consent. Display as a vision, not a consent."
+floorspace-pipeline,cluster site mineral-extraction,floorspace,no,public,extension,ILP-DS,"Floorspace in the owner's vision beyond the consent, in square metres by use class. Display as a vision, not a consent."
+jobs-from,opportunity-area cluster site mineral-extraction infrastructure,integer,no,public,extension,ILP-DS,"The number of jobs the development is expected to support, as the source states it. A single figure goes here; for a range, the lower figure."
+jobs-to,opportunity-area cluster site mineral-extraction infrastructure,integer,no,public,extension,ILP-DS,"The upper figure when the source gives a range of jobs, such as 25,000 in ""14,000 to 25,000 jobs"". Needs jobs-from."
 toid,building,toid,no,public,adopted,OS Open TOID,The Ordnance Survey TOID of an existing building.
-uprns,site mineral-extraction-site building,uprns,no,public,adopted,OS Open UPRN,The Unique Property Reference Numbers of the addresses.
+uprns,site mineral-extraction building,uprns,no,public,adopted,OS Open UPRN,The Unique Property Reference Numbers of the addresses.
 storeys,building,integer,no,public,extension,ILP-DS,The number of storeys above ground.
 height-m,building,number,no,public,extension,ILP-DS,The height above ground in metres.
 model-tier,building,code:model-tier,no,public,extension,ILP-DS,The level of detail at which the building is modelled.
 model-url,all,uri,no,public,extension,ILP-DS,A link to a 3D model or viewer.
 story-stops,all,strings,no,public,extension,ILP-DS,The names of the camera views in the 3D model that tell the location's story.
-designated-area,opportunity-area cluster site mineral-extraction-site,boolean,no,public,extension,ILP-DS,Whether the record lies in a designated opportunity or growth area.
-designations,opportunity-area cluster site mineral-extraction-site,strings,no,public,extension,ILP-DS,"The designations, such as a London Plan Opportunity Area."
-land-type,opportunity-area cluster site mineral-extraction-site,code:land-type,no,public,extension,ILP-DS,"Brownfield, greenfield or both."
+designated-area,opportunity-area cluster site mineral-extraction,boolean,no,public,extension,ILP-DS,Whether the record lies in a designated opportunity or growth area.
+designations,opportunity-area cluster site mineral-extraction,strings,no,public,extension,ILP-DS,"The designations, such as a London Plan Opportunity Area."
+land-type,opportunity-area cluster site mineral-extraction,code:land-type,no,public,extension,ILP-DS,"Brownfield, greenfield or both."
 overall-status,all,code:overall-status,no,public,extension,ILP-DS,"Whether the development is moving: stalled, in progress or complete."
-delivery-stage,cluster site mineral-extraction-site infrastructure building,code:delivery-stage,no,public,extension,ILP-DS,"The stage a development in progress has reached, where it is known. Leave empty for a whole area with schemes at several stages."
-land-assembly,cluster site mineral-extraction-site,code:land-assembly,no,internal,extension,ILP-DS,How far the land has been brought into one ownership. Commercially sensitive: never published.
-owner-vision,cluster site mineral-extraction-site,code:owner-vision,no,restricted,extension,ILP-DS,How clear the owner's vision is. Published only once the owner has seen it.
-policy-alignment-local,cluster site mineral-extraction-site,alignment,no,restricted,extension,ILP-DS,An assessment of the vision against the Local Plan. Published only once the planning authority has seen it.
-policy-alignment-regional,cluster site mineral-extraction-site,alignment,no,restricted,extension,ILP-DS,"An assessment of the vision against the regional plan, such as the London Plan. Published only once the planning authority has seen it."
-policy-alignment-national,cluster site mineral-extraction-site,alignment,no,restricted,extension,ILP-DS,An assessment of the vision against national policy (the NPPF). Published only once the planning authority has seen it.
+delivery-stage,cluster site mineral-extraction infrastructure building,code:delivery-stage,no,public,extension,ILP-DS,"The stage a development in progress has reached, where it is known. Leave empty for a whole area with schemes at several stages."
+land-assembly,cluster site mineral-extraction,code:land-assembly,no,internal,extension,ILP-DS,How far the land has been brought into one ownership. Commercially sensitive: never published.
+owner-vision,cluster site mineral-extraction,code:owner-vision,no,restricted,extension,ILP-DS,How clear the owner's vision is. Published only once the owner has seen it.
+policy-alignment-local,cluster site mineral-extraction,alignment,no,restricted,extension,ILP-DS,An assessment of the vision against the Local Plan. Published only once the planning authority has seen it.
+policy-alignment-regional,cluster site mineral-extraction,alignment,no,restricted,extension,ILP-DS,"An assessment of the vision against the regional plan, such as the London Plan. Published only once the planning authority has seen it."
+policy-alignment-national,cluster site mineral-extraction,alignment,no,restricted,extension,ILP-DS,An assessment of the vision against national policy (the NPPF). Published only once the planning authority has seen it.
 asset-classes,all,codes:asset-class,no,public,extension,Opportunity London asset classes,"The kinds of asset the location offers investors, in real estate or infrastructure."
-economic-drivers,opportunity-area cluster site mineral-extraction-site infrastructure,codes:economic-driver,no,public,extension,ILP-DS,"The sectors expected to drive demand, starting from WLA's six priority growth sectors."
-gva-uplift,opportunity-area cluster site mineral-extraction-site infrastructure,number,no,public,extension,ILP-DS,"The estimated gross value added uplift in pounds a year. Needs gva-method, gva-source and gva-date."
-gva-method,opportunity-area cluster site mineral-extraction-site infrastructure,code:gva-method,no,public,extension,ILP-DS,"How the GVA estimate was made: gross, net additional, or not stated by the source."
-gva-source,opportunity-area cluster site mineral-extraction-site infrastructure,string,no,public,extension,ILP-DS,Where the GVA estimate comes from: a link or a citation.
-gva-date,opportunity-area cluster site mineral-extraction-site infrastructure,date,no,public,extension,ILP-DS,The date of the GVA estimate.
-investment-value,opportunity-area cluster site mineral-extraction-site infrastructure,number,no,public,extension,ILP-DS,"An investment figure in pounds. Needs value-type, value-source and value-date."
-value-type,opportunity-area cluster site mineral-extraction-site infrastructure,code:value-type,no,public,extension,ILP-DS,What the investment figure measures.
-value-source,opportunity-area cluster site mineral-extraction-site infrastructure,string,no,public,extension,ILP-DS,Where the investment figure comes from: a link or a citation.
-value-date,opportunity-area cluster site mineral-extraction-site infrastructure,date,no,public,extension,ILP-DS,The date of the investment figure.
-funding-status,cluster site mineral-extraction-site infrastructure,code:funding-status,no,restricted,extension,ILP-DS,How much of the development's funding is secured. Published only with the owner's agreement.
-contacts,all,contacts,no,public,extension,ILP-DS,"Where to send enquiries. Use a role or team address, not a personal one."
-investors,opportunity-area cluster site mineral-extraction-site infrastructure,organisations,no,public,extension,ILP-DS,"Organisations investing in the location, with an optional logo link."
-model-commissioner,opportunity-area cluster site mineral-extraction-site building infrastructure,string,no,public,extension,ILP-DS,"The organisation that paid for the 3D model, shown as a labelled credit."
+economic-drivers,opportunity-area cluster site mineral-extraction infrastructure,codes:economic-driver,no,public,extension,ILP-DS,"The sectors expected to drive demand, starting from WLA's six priority growth sectors."
+gva-uplift,opportunity-area cluster site mineral-extraction infrastructure,number,no,public,extension,ILP-DS,"The estimated gross value added uplift in pounds a year. Needs gva-method, gva-source and gva-date."
+gva-method,opportunity-area cluster site mineral-extraction infrastructure,code:gva-method,no,public,extension,ILP-DS,"How the GVA estimate was made: gross, net additional, or not stated by the source."
+gva-source,opportunity-area cluster site mineral-extraction infrastructure,string,no,public,extension,ILP-DS,Where the GVA estimate comes from: a link or a citation.
+gva-date,opportunity-area cluster site mineral-extraction infrastructure,date,no,public,extension,ILP-DS,The date of the GVA estimate.
+investment-value,opportunity-area cluster site mineral-extraction infrastructure,number,no,public,extension,ILP-DS,"An investment figure in pounds. Needs value-type, value-source and value-date."
+value-type,opportunity-area cluster site mineral-extraction infrastructure,code:value-type,no,public,extension,ILP-DS,What the investment figure measures.
+value-source,opportunity-area cluster site mineral-extraction infrastructure,string,no,public,extension,ILP-DS,Where the investment figure comes from: a link or a citation.
+value-date,opportunity-area cluster site mineral-extraction infrastructure,date,no,public,extension,ILP-DS,The date of the investment figure.
+funding-status,cluster site mineral-extraction infrastructure,code:funding-status,no,restricted,extension,ILP-DS,How much of the development's funding is secured. Published only with the owner's agreement.
+contacts,all,contacts,no,public,extension,ILP-DS,"Where to send enquiries: a named person, a role or a team, with an email address or web page. Anything supplied here is published."
+investors,opportunity-area cluster site mineral-extraction infrastructure,organisations,no,public,extension,ILP-DS,"Organisations investing in the location, with an optional logo link."
+model-commissioner,opportunity-area cluster site mineral-extraction building infrastructure,string,no,public,extension,ILP-DS,"The organisation that paid for the 3D model, shown as a labelled credit."
 published-with-consent,all,field-names,no,public,core,ILP-DS,The restricted fields that the owner or planning authority has agreed may be published for this record.
 start-date,all,date,no,public,adopted,Planning Data platform,The date the record came into effect.
 end-date,all,date,no,public,adopted,Planning Data platform,"The date the record ceased to apply, such as a site that was withdrawn."

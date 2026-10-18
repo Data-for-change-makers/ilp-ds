@@ -16,10 +16,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.3-draft"
+VERSION = "0.4-draft"
 NAMESPACE = "https://dataforchangemakers.org.uk/ns/ilp-ds#"
 SCHEMA_ID = "https://raw.githubusercontent.com/Data-for-change-makers/ilp-ds/main/schema/ilp-ds.schema.json"
-KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction-site", "infrastructure", "building"]
+KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction", "infrastructure", "building"]
 
 ID_PATTERN = r"^#[a-z0-9]+(-[a-z0-9]+)*$"
 DATE = {"type": "string", "format": "date", "pattern": r"^\d{4}-\d{2}-\d{2}$"}

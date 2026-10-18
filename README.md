@@ -1,11 +1,11 @@
 # ILP-DS
 
 **Investment Location Profile-Data Standard.** An open format for the facts an
-investor needs about a place to invest in, in real estate or infrastructure: opportunity areas,
-clusters, sites and buildings, their asset classes, planning status, land type, economic drivers
+investor needs about a place to invest in, across real estate, infrastructure and mineral
+extraction sites: opportunity areas, clusters, sites and buildings, their asset classes, planning status, land type, economic drivers
 and funding, linked to maps and 3D models.
 
-> **Status: 0.3-draft.** We are in the early stages of exploring this standard. Names, fields and
+> **Status: 0.4-draft.** We are in the early stages of exploring this standard. Names, fields and
 > code lists may change in any 0.x release, so do not use it for production data yet.
 
 ILP-DS is an initiative of [West London Business](https://www.westlondon.com), part of
@@ -14,7 +14,7 @@ or to get involved in developing it, please [open an issue](../../issues) or
 [get in touch](https://www.dataforchangemakers.org.uk/contact/).
 
 ILP-DS was first published as REILP-DS (Real Estate Investment Location Profile-Data Standard)
-and renamed when its scope widened to infrastructure.
+and renamed when its scope widened to infrastructure. Mineral extraction sites are also in scope.
 
 ## What it does
 

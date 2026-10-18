@@ -21,7 +21,8 @@ are examples of the data you hold or need, and the fields or code list values th
 - Give every new field a one-sentence definition, the kinds of record it applies to, and a
   visibility: public, restricted (published only with consent) or internal (never published).
 - Prefer a code list to free text when values will be compared or filtered.
-- Do not add fields that hold personal data. Contacts should be roles or team addresses.
+- Do not add fields that hold personal data. The one exception is `contacts`, which may name a
+  person and is always published, so supply a person's details only with their agreement.
 
 ## How changes are decided
 

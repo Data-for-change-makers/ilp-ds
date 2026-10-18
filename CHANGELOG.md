@@ -2,6 +2,15 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.4-draft — 18 October 2026
+
+- Scope: mineral extraction sites are in scope alongside real estate and infrastructure.
+- The kind `mineral-extraction-site` is renamed `mineral-extraction`.
+- `value-type` gains `investment-required`, for the investment a source says is needed. It is
+  not a gross development value.
+- `contacts` may name a person with their work email address. Anything supplied in `contacts`
+  is published.
+
 ## 0.3-draft — 18 October 2026
 
 Changes found while preparing the first West London data from the West London Alliance's

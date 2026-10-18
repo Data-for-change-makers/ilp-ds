@@ -1,3 +1,4 @@
 value,label,definition,source
 gdv,Gross development value,The expected value of the completed development.,ILP-DS
 invested-to-date,Invested to date,The amount invested so far.,ILP-DS
+investment-required,Investment required,"The investment the source says is needed to deliver the development. It is not a gross development value.",ILP-DS

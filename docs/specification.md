@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.3-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.4-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -12,7 +12,8 @@ an issue in this repository or [get in touch](https://www.dataforchangemakers.or
 Investors, councils and developers describe the same places in different ways: an
 opportunity area in a planning document, a site on a brownfield register, a scheme in a
 developer's brochure, a building in a 3D model. ILP-DS is a common format for the facts an
-investor needs about a location, in real estate or infrastructure, kept in one record that a map, a 3D model and an open data
+investor needs about a location, across real estate, infrastructure and mineral extraction
+sites, kept in one record that a map, a 3D model and an open data
 feed can all read.
 
 ILP-DS does not invent what already exists. It takes identifiers, planning fields and code
@@ -32,7 +33,7 @@ infrastructure is linked to the places it serves by `serves`:
 | `opportunity-area` | A large area designated or promoted for growth, such as a GLA Opportunity Area | none |
 | `cluster` | Neighbouring sites promoted together as one opportunity | an opportunity area, or none |
 | `site` | A single development site | a cluster or an opportunity area, or none |
-| `mineral-extraction-site` | A site where minerals such as sand and gravel are or will be extracted | a cluster or an opportunity area, or none |
+| `mineral-extraction` | A site where minerals such as sand and gravel are or will be extracted | a cluster or an opportunity area, or none |
 | `infrastructure` | A route or network, such as a railway line or heat network, that serves several places | an opportunity area, or none |
 | `building` | An existing or proposed building, usually in a 3D model | a site, cluster, mineral extraction site or infrastructure (required) |
 
@@ -52,7 +53,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.3-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.4-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -182,7 +183,13 @@ sorting and totals.
 
 GVA estimates vary widely with the method used (gross or net additional, the period, the
 allowance for displacement). A GVA figure MUST carry its method, source and date, and an
-investment figure its type, source and date. Where a source gives a GVA figure without a
+investment figure its type, source and date.
+
+`value-type` says what an investment figure measures: `gdv` (the expected value of the
+completed development), `investment-required` (what the source says is needed to deliver it)
+or `invested-to-date`. An investment requirement is a cost, not a value, so it MUST NOT be
+recorded as a GDV. Where the source qualifies a figure, such as "c.£7.5bn" or "£2bn+", the
+value holds the number and `value-source` SHOULD quote the source's wording. Where a source gives a GVA figure without a
 method, `gva-method` is `not-stated`, and displays MUST say so beside the figure.
 
 ### 4.8 Publishers' own fields
@@ -207,6 +214,10 @@ who assessed it and when.
 A publisher keeps one internal file and publishes a copy made by `tools/export_public.py`, which
 removes internal fields and unconsented restricted fields and marks the copy `"public": true`.
 `tools/check_ilp.py` rejects a public file that still carries them.
+
+`contacts` is public. A contact MAY name a person, with their role and work email address, and
+anything supplied in `contacts` is published. Supply a person's details only when they have
+agreed to be listed.
 
 ## 6. Linking to 3D models
 

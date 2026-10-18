@@ -41,9 +41,9 @@ PARENT_KINDS = {
     "opportunity-area": set(),
     "cluster": {"opportunity-area"},
     "site": {"opportunity-area", "cluster"},
-    "mineral-extraction-site": {"opportunity-area", "cluster"},
+    "mineral-extraction": {"opportunity-area", "cluster"},
     "infrastructure": {"opportunity-area"},
-    "building": {"cluster", "site", "mineral-extraction-site", "infrastructure"},
+    "building": {"cluster", "site", "mineral-extraction", "infrastructure"},
 }
 LINES = {"LineString", "MultiLineString"}
 
