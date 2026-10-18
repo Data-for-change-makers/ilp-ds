@@ -1,6 +1,6 @@
-# Contributing to REILP-DS
+# Contributing to ILP-DS
 
-Thank you for your interest. REILP-DS is an early draft, and the most useful contributions now
+Thank you for your interest. ILP-DS is an early draft, and the most useful contributions now
 are examples of the data you hold or need, and the fields or code list values that are missing.
 
 ## How to take part
@@ -9,8 +9,8 @@ are examples of the data you hold or need, and the fields or code list values th
   data for and, if you can, show an example.
 - **Propose an edit:** open a pull request. To change a field or a code list, edit
   `schema/fields.csv` or the CSV in `codelists/`, run `python tools/build_schema.py`, and check
-  that `python -m pytest` passes. Never edit the generated files (`schema/reilp-ds.schema.json`,
-  `schema/reilp-ds.context.jsonld`, `docs/fields.md`) by hand.
+  that `python -m pytest` passes. Never edit the generated files (`schema/ilp-ds.schema.json`,
+  `schema/ilp-ds.context.jsonld`, `docs/fields.md`) by hand.
 - **Talk to us:** [get in touch](https://www.dataforchangemakers.org.uk/contact/) through Data for
   Change Makers.
 
@@ -27,7 +27,7 @@ are examples of the data you hold or need, and the fields or code list values th
 
 During the 0.x drafts, West London Business reviews and approves changes and records each one
 in [CHANGELOG.md](CHANGELOG.md). There is no formal process yet: shared rules will be agreed
-once a second organisation commits to publishing or using REILP-DS data.
+once a second organisation commits to publishing or using ILP-DS data.
 
 ## Licensing of contributions
 

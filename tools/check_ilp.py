@@ -1,7 +1,7 @@
-"""Check REILP-DS files.
+"""Check ILP-DS files.
 
 Usage:
-    python tools/check_reilp.py FILE [FILE ...]
+    python tools/check_ilp.py FILE [FILE ...]
 
 Each file is checked against the JSON Schema and then against the rules a schema cannot
 express:
@@ -25,7 +25,7 @@ from pathlib import Path
 from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parent.parent
-SCHEMA = json.loads((ROOT / "schema" / "reilp-ds.schema.json").read_text(encoding="utf-8"))
+SCHEMA = json.loads((ROOT / "schema" / "ilp-ds.schema.json").read_text(encoding="utf-8"))
 with (ROOT / "schema" / "fields.csv").open(newline="", encoding="utf-8") as handle:
     REGISTRY = {row["field"]: row for row in csv.DictReader(handle)}
 
@@ -54,7 +54,7 @@ def context_base(context) -> str | None:
 
 
 def check_document(doc: dict) -> list[str]:
-    """Return a list of problems with one REILP-DS document (empty if it passes)."""
+    """Return a list of problems with one ILP-DS document (empty if it passes)."""
     problems: list[str] = []
     validator = Draft202012Validator(SCHEMA, format_checker=FormatChecker())
     for error in sorted(validator.iter_errors(doc), key=lambda e: list(e.absolute_path)):

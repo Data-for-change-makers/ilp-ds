@@ -1,6 +1,6 @@
-# REILP-DS: Real Estate Investment Location Profile-Data Standard
+# ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.1-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.2-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -11,13 +11,14 @@ an issue in this repository or [get in touch](https://www.dataforchangemakers.or
 
 Investors, councils and developers describe the same places in different ways: an
 opportunity area in a planning document, a site on a brownfield register, a scheme in a
-developer's brochure, a building in a 3D model. REILP-DS is a common format for the facts an
-investor needs about a location, kept in one record that a map, a 3D model and an open data
+developer's brochure, a building in a 3D model. ILP-DS is a common format for the facts an
+investor needs about a location, in real estate or infrastructure, kept in one record that a map, a 3D model and an open data
 feed can all read.
 
-REILP-DS does not invent what already exists. It takes identifiers, planning fields and code
+ILP-DS does not invent what already exists. It takes identifiers, planning fields and code
 lists from published UK standards (section 9), and adds only the investment facts that none of
-them covers, such as land type, overall status, economic drivers and funding status.
+them covers, such as asset class, land type, overall status, economic drivers and funding
+status.
 
 The key words MUST, SHOULD and MAY are used as in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
@@ -38,13 +39,13 @@ any of them separately.
 
 ## 3. The file
 
-A REILP-DS file is a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) FeatureCollection,
+A ILP-DS file is a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) FeatureCollection,
 so any GIS or web map can open it. Each record is one Feature.
 
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "REILP-DS", "version": "0.1-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.2-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -70,9 +71,9 @@ buildings and UPRNs for addresses.
 
 ### 3.2 Linked data
 
-The file is also JSON-LD 1.1. Copy `schema/reilp-ds.context.jsonld` into the file's `@context`
-and add `"@base"` with the same value as `base`. REILP-DS terms use the namespace
-`https://dataforchangemakers.org.uk/ns/reilp-ds#` (prefix `reilp:`); `name`, `description`, the
+The file is also JSON-LD 1.1. Copy `schema/ilp-ds.context.jsonld` into the file's `@context`
+and add `"@base"` with the same value as `base`. ILP-DS terms use the namespace
+`https://dataforchangemakers.org.uk/ns/ilp-ds#` (prefix `ilp:`); `name`, `description`, the
 dates, `source` and `licence` use schema.org and Dublin Core terms. The namespace address does
 not resolve yet; the context is carried inline until it does.
 
@@ -109,24 +110,43 @@ the three boroughs. Use its Planning Data organisation reference: `development-c
 - **Greenfield**, land not previously developed, is in general use but not defined there.
 - **Greyfield** has no statutory definition. It describes underused commercial, retail or
   light-industrial land, such as retail and business parks. Since the NPPF counts such land as
-  brownfield, REILP-DS records it as a kind of brownfield.
+  brownfield, ILP-DS records it as a kind of brownfield.
 - **Mixed** covers clusters and areas that include both.
 
 Grey belt is not a land type: it is a Green Belt category in the NPPF, so it is not a value here.
 
-### 4.3 Vision and consent
+### 4.3 Asset classes
+
+`asset-classes` lists the kinds of asset a location offers investors. A location can offer
+several, so the field is a list. The values follow the asset classes used by Opportunity London,
+in two groups, plus `other`:
+
+| Group | Values |
+| --- | --- |
+| Real estate | `commercial`, `international-education-and-learning`, `experience-economy`, `frontier-innovation`, `living`, `logistics-and-light-industrial` |
+| Infrastructure | `data-centres`, `energy-and-decarbonisation`, `transport` |
+
+The code list maps each value to its nearest equivalent in GRESB's real estate property types
+and infrastructure sectors (GRESB's infrastructure sectors follow EDHECinfra's TICCS), so that
+the data can be compared with what investors report to GRESB.
+
+Asset class is not the same as `economic-drivers`, which names the sectors expected to create
+demand, or `floorspace-consented`, which uses planning use classes. Further classes, such as
+hotels, healthcare, water and waste, and social infrastructure, may be added.
+
+### 4.4 Vision and consent
 
 Consented figures (`homes-consented`, `floorspace-consented`) and the owner's further vision
 (`homes-pipeline`, `floorspace-pipeline`) are kept apart. Displays MUST label pipeline figures
 as a vision, not a consent.
 
-### 4.4 Estimates
+### 4.5 Estimates
 
 GVA estimates vary widely with the method used (gross or net additional, the period, the
 allowance for displacement). A GVA figure MUST carry its method, source and date, and an
 investment figure its type, source and date.
 
-### 4.5 Publishers' own fields
+### 4.6 Publishers' own fields
 
 A publisher MAY add fields of its own, named with an `x-` prefix, such as `x-discover-colour`.
 Checkers ignore them. Anything another publisher would also need should be proposed for the
@@ -147,11 +167,11 @@ who assessed it and when.
 
 A publisher keeps one internal file and publishes a copy made by `tools/export_public.py`, which
 removes internal fields and unconsented restricted fields and marks the copy `"public": true`.
-`tools/check_reilp.py` rejects a public file that still carries them.
+`tools/check_ilp.py` rejects a public file that still carries them.
 
 ## 6. Linking to 3D models
 
-REILP-DS records and 3D models share identifiers, so a model never holds facts of its own:
+ILP-DS records and 3D models share identifiers, so a model never holds facts of its own:
 
 - Each building in a glTF 2.0 model is a named node whose name is the record's `id` without the
   `#`, such as `example-works-block-a`.
@@ -165,32 +185,34 @@ REILP-DS records and 3D models share identifiers, so a model never holds facts o
 
 ```sh
 pip install -r requirements.txt
-python tools/check_reilp.py my-locations.geojson
+python tools/check_ilp.py my-locations.geojson
 python tools/export_public.py my-locations.geojson my-locations-public.geojson
 ```
 
-The checker validates the file against `schema/reilp-ds.schema.json` and then checks what a
+The checker validates the file against `schema/ilp-ds.schema.json` and then checks what a
 schema cannot: unique ids, parents that exist and sit one level up, the 400-word limit, a
 matching `@base`, and the visibility rules in section 5.
 
 ## 8. Versions and changes
 
-REILP-DS follows [semantic versioning](https://semver.org) from 1.0. Until then, any 0.x release
+ILP-DS follows [semantic versioning](https://semver.org) from 1.0. Until then, any 0.x release
 may change anything, and each change is recorded in [CHANGELOG.md](../CHANGELOG.md).
 
 West London Business approves changes for now. There is deliberately no steering group or formal
 change process at this stage. Shared rules will be agreed when a second organisation commits to
-publishing or relying on REILP-DS data.
+publishing or relying on ILP-DS data.
 
 ## 9. Relationship to other standards
 
-| Standard | What REILP-DS takes from it |
+| Standard | What ILP-DS takes from it |
 | --- | --- |
 | [Planning Data platform](https://www.planning.data.gov.uk) (MHCLG) | Organisation references; `name`, `organisation`, `start-date`, `end-date`, `entry-date`, `source` |
 | [Brownfield land data standard](https://www.gov.uk/government/publications/brownfield-land-registers-data-standard/publish-your-brownfield-land-data) | `hectares`, `ownership-status`, `planning-status`, `permission-type`, `permission-date` and their code lists; `point` (GeoX, GeoY); `planning-documents-url` (PlanningHistory) |
 | [GLA Planning Information Data Standard](https://london.gov.uk/sites/default/files/updated_non_technical_planning_data_standard.pdf) | `planning-references`, `homes-consented`, `floorspace-consented` |
 | [GLA Opportunity Areas](https://data.london.gov.uk/dataset/opportunity-areas-epr7z) | `opportunity-area` names |
 | ONS GSS codes | `local-authorities` |
+| Opportunity London asset classes | The `asset-class` code list |
+| [GRESB asset classification](https://guides.gresb.com/completingassessments/2026-real-estate-assessment/info/asset-and-portfolio-classification) (real estate) and [infrastructure sectors](https://guides.gresb.com/completing-gresb-assessments/completing-the-assessment/supporting-information/asset-classification) | The GRESB equivalents in the `asset-class` code list |
 | [OS Open Identifiers](https://www.ordnancesurvey.co.uk/products/open-mastermap-programme/open-id-policy) | `toid`, `uprns` |
 | [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) (RFC 7946) | The file format and geometry |
 | glTF 2.0 (ISO/IEC 12113:2022) with `EXT_structural_metadata` | The link between records and 3D models (section 6) |

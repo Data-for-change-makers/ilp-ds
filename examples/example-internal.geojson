@@ -2,7 +2,7 @@
   "@context": {
     "@version": 1.1,
     "geojson": "https://purl.org/geojson/vocab#",
-    "reilp": "https://dataforchangemakers.org.uk/ns/reilp-ds#",
+    "ilp": "https://dataforchangemakers.org.uk/ns/ilp-ds#",
     "schema": "https://schema.org/",
     "dct": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
@@ -31,141 +31,145 @@
     "public": null,
     "base": null,
     "changelog": null,
-    "kind": "reilp:kind",
+    "kind": "ilp:kind",
     "parent": {
-      "@id": "reilp:parent",
+      "@id": "ilp:parent",
       "@type": "@id"
     },
     "name": "schema:name",
     "description": "schema:description",
-    "organisation": "reilp:organisation",
+    "organisation": "ilp:organisation",
     "local-authorities": {
-      "@id": "reilp:localAuthorities",
+      "@id": "ilp:localAuthorities",
       "@container": "@set"
     },
-    "planning-authority": "reilp:planningAuthority",
-    "opportunity-area": "reilp:opportunityArea",
+    "planning-authority": "ilp:planningAuthority",
+    "opportunity-area": "ilp:opportunityArea",
     "point": {
-      "@id": "reilp:point",
+      "@id": "ilp:point",
       "@container": "@list"
     },
     "hectares": {
-      "@id": "reilp:hectares",
+      "@id": "ilp:hectares",
       "@type": "xsd:decimal"
     },
-    "ownership-status": "reilp:ownershipStatus",
+    "ownership-status": "ilp:ownershipStatus",
     "planning-references": {
-      "@id": "reilp:planningReferences",
+      "@id": "ilp:planningReferences",
       "@container": "@set"
     },
     "planning-documents-url": {
-      "@id": "reilp:planningDocumentsUrl",
+      "@id": "ilp:planningDocumentsUrl",
       "@type": "@id"
     },
-    "planning-status": "reilp:planningStatus",
-    "permission-type": "reilp:permissionType",
+    "planning-status": "ilp:planningStatus",
+    "permission-type": "ilp:permissionType",
     "permission-date": {
-      "@id": "reilp:permissionDate",
+      "@id": "ilp:permissionDate",
       "@type": "xsd:date"
     },
     "homes-consented": {
-      "@id": "reilp:homesConsented",
+      "@id": "ilp:homesConsented",
       "@type": "xsd:integer"
     },
     "floorspace-consented": {
-      "@id": "reilp:floorspaceConsented",
+      "@id": "ilp:floorspaceConsented",
       "@type": "@json"
     },
     "homes-pipeline": {
-      "@id": "reilp:homesPipeline",
+      "@id": "ilp:homesPipeline",
       "@type": "xsd:integer"
     },
     "floorspace-pipeline": {
-      "@id": "reilp:floorspacePipeline",
+      "@id": "ilp:floorspacePipeline",
       "@type": "@json"
     },
-    "toid": "reilp:toid",
+    "toid": "ilp:toid",
     "uprns": {
-      "@id": "reilp:uprns",
+      "@id": "ilp:uprns",
       "@container": "@set"
     },
     "storeys": {
-      "@id": "reilp:storeys",
+      "@id": "ilp:storeys",
       "@type": "xsd:integer"
     },
     "height-m": {
-      "@id": "reilp:heightM",
+      "@id": "ilp:heightM",
       "@type": "xsd:decimal"
     },
-    "model-tier": "reilp:modelTier",
+    "model-tier": "ilp:modelTier",
     "model-url": {
-      "@id": "reilp:modelUrl",
+      "@id": "ilp:modelUrl",
       "@type": "@id"
     },
     "story-stops": {
-      "@id": "reilp:storyStops",
+      "@id": "ilp:storyStops",
       "@container": "@set"
     },
     "designated-area": {
-      "@id": "reilp:designatedArea",
+      "@id": "ilp:designatedArea",
       "@type": "xsd:boolean"
     },
     "designations": {
-      "@id": "reilp:designations",
+      "@id": "ilp:designations",
       "@container": "@set"
     },
-    "land-type": "reilp:landType",
-    "overall-status": "reilp:overallStatus",
-    "land-assembly": "reilp:landAssembly",
-    "owner-vision": "reilp:ownerVision",
+    "land-type": "ilp:landType",
+    "overall-status": "ilp:overallStatus",
+    "land-assembly": "ilp:landAssembly",
+    "owner-vision": "ilp:ownerVision",
     "policy-alignment-local": {
-      "@id": "reilp:policyAlignmentLocal",
+      "@id": "ilp:policyAlignmentLocal",
       "@type": "@json"
     },
     "policy-alignment-regional": {
-      "@id": "reilp:policyAlignmentRegional",
+      "@id": "ilp:policyAlignmentRegional",
       "@type": "@json"
     },
     "policy-alignment-national": {
-      "@id": "reilp:policyAlignmentNational",
+      "@id": "ilp:policyAlignmentNational",
       "@type": "@json"
     },
+    "asset-classes": {
+      "@id": "ilp:assetClasses",
+      "@container": "@set"
+    },
     "economic-drivers": {
-      "@id": "reilp:economicDrivers",
+      "@id": "ilp:economicDrivers",
       "@container": "@set"
     },
     "gva-uplift": {
-      "@id": "reilp:gvaUplift",
+      "@id": "ilp:gvaUplift",
       "@type": "xsd:decimal"
     },
-    "gva-method": "reilp:gvaMethod",
-    "gva-source": "reilp:gvaSource",
+    "gva-method": "ilp:gvaMethod",
+    "gva-source": "ilp:gvaSource",
     "gva-date": {
-      "@id": "reilp:gvaDate",
+      "@id": "ilp:gvaDate",
       "@type": "xsd:date"
     },
     "investment-value": {
-      "@id": "reilp:investmentValue",
+      "@id": "ilp:investmentValue",
       "@type": "xsd:decimal"
     },
-    "value-type": "reilp:valueType",
-    "value-source": "reilp:valueSource",
+    "value-type": "ilp:valueType",
+    "value-source": "ilp:valueSource",
     "value-date": {
-      "@id": "reilp:valueDate",
+      "@id": "ilp:valueDate",
       "@type": "xsd:date"
     },
-    "funding-status": "reilp:fundingStatus",
+    "funding-status": "ilp:fundingStatus",
     "contacts": {
-      "@id": "reilp:contacts",
+      "@id": "ilp:contacts",
       "@type": "@json"
     },
     "investors": {
-      "@id": "reilp:investors",
+      "@id": "ilp:investors",
       "@type": "@json"
     },
-    "model-commissioner": "reilp:modelCommissioner",
+    "model-commissioner": "ilp:modelCommissioner",
     "published-with-consent": {
-      "@id": "reilp:publishedWithConsent",
+      "@id": "ilp:publishedWithConsent",
       "@container": "@set"
     },
     "start-date": {
@@ -182,20 +186,20 @@
     },
     "source": "dct:source",
     "licence": "dct:license",
-    "@base": "https://example.org/reilp-ds/locations"
+    "@base": "https://example.org/ilp-ds/locations"
   },
   "type": "FeatureCollection",
   "standard": {
-    "name": "REILP-DS",
-    "version": "0.1-draft"
+    "name": "ILP-DS",
+    "version": "0.2-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
-  "base": "https://example.org/reilp-ds/locations",
+  "base": "https://example.org/ilp-ds/locations",
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for REILP-DS 0.1-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.2-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
@@ -232,7 +236,7 @@
       "properties": {
         "kind": "opportunity-area",
         "name": "Example Opportunity Area (fictional)",
-        "description": "An invented opportunity area used to show how REILP-DS records fit together. It does not describe a real place.",
+        "description": "An invented opportunity area used to show how ILP-DS records fit together. It does not describe a real place.",
         "local-authorities": [
           "E09000009"
         ],
@@ -246,6 +250,11 @@
           "Opportunity Area (fictional)"
         ],
         "land-type": "mixed",
+        "asset-classes": [
+          "living",
+          "frontier-innovation",
+          "transport"
+        ],
         "economic-drivers": [
           "creative-tech",
           "immersive-media"
@@ -299,6 +308,10 @@
         "overall-status": "in-progress-master-planning",
         "land-assembly": "partly-assembled",
         "owner-vision": "emerging",
+        "asset-classes": [
+          "commercial",
+          "experience-economy"
+        ],
         "economic-drivers": [
           "creative-tech",
           "design"
@@ -383,6 +396,10 @@
         "policy-alignment-national": {
           "alignment": "not-assessed"
         },
+        "asset-classes": [
+          "living",
+          "commercial"
+        ],
         "economic-drivers": [
           "creative-tech",
           "design"
@@ -464,6 +481,9 @@
         "storeys": 12,
         "height-m": 41.5,
         "model-tier": "massing",
+        "asset-classes": [
+          "living"
+        ],
         "overall-status": "in-progress-master-planning",
         "entry-date": "2026-10-18",
         "source": "Fictional example"

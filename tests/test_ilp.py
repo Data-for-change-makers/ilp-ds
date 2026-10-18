@@ -1,4 +1,4 @@
-"""Tests for the REILP-DS schema, code lists, examples and tools."""
+"""Tests for the ILP-DS schema, code lists, examples and tools."""
 from __future__ import annotations
 
 import copy
@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
 import build_schema  # noqa: E402
-from check_reilp import check_document  # noqa: E402
+from check_ilp import check_document  # noqa: E402
 from export_public import make_public  # noqa: E402
 
 INTERNAL_EXAMPLE = ROOT / "examples" / "example-internal.geojson"
@@ -53,6 +53,19 @@ def test_code_lists_have_unique_values():
         assert len(values) == len(set(values)), path.name
 
 
+def test_asset_classes_are_grouped_and_mapped():
+    with (ROOT / "codelists" / "asset-class.csv").open(newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    groups = {row["value"]: row["group"] for row in rows}
+    assert {v for v, g in groups.items() if g == "real-estate"} == {
+        "commercial", "international-education-and-learning", "experience-economy",
+        "frontier-innovation", "living", "logistics-and-light-industrial"}
+    assert {v for v, g in groups.items() if g == "infrastructure"} == {
+        "data-centres", "energy-and-decarbonisation", "transport"}
+    assert groups["other"] == ""
+    assert all(row["gresb"] for row in rows)
+
+
 def test_registry_visibility_and_origin_values():
     for field in build_schema.fields():
         assert field["visibility"] in {"public", "restricted", "internal"}, field["field"]
@@ -72,7 +85,7 @@ def test_public_example_passes_and_matches_export(doc):
 
 
 def test_example_context_matches_published_context(doc):
-    published = load(ROOT / "schema" / "reilp-ds.context.jsonld")["@context"]
+    published = load(ROOT / "schema" / "ilp-ds.context.jsonld")["@context"]
     inline = dict(doc["@context"])
     assert inline.pop("@base") == doc["base"]
     assert inline == published
@@ -83,6 +96,16 @@ def test_example_context_matches_published_context(doc):
 def test_unknown_code_is_rejected(doc):
     record(doc, "#example-site")["land-type"] = "greybelt"
     assert any("land-type" in p for p in check_document(doc))
+
+
+def test_unknown_asset_class_is_rejected(doc):
+    record(doc, "#example-site")["asset-classes"] = ["hotel"]
+    assert any("asset-classes" in p for p in check_document(doc))
+
+
+def test_repeated_asset_class_is_rejected(doc):
+    record(doc, "#example-site")["asset-classes"] = ["living", "living"]
+    assert any("asset-classes" in p for p in check_document(doc))
 
 
 def test_unknown_field_is_rejected(doc):
@@ -185,8 +208,8 @@ def test_public_example_expands_as_json_ld():
     expanded = jsonld.expand(load(PUBLIC_EXAMPLE), {"base": "https://example.org/files/example-public.geojson"})
     nodes = expanded[0]["https://purl.org/geojson/vocab#features"]
     ids = {node["@id"] for node in nodes}
-    assert "https://example.org/reilp-ds/locations#example-site" in ids
+    assert "https://example.org/ilp-ds/locations#example-site" in ids
     site = next(n for n in nodes if n["@id"].endswith("#example-site"))
     ns = build_schema.NAMESPACE
     assert site[ns + "landType"][0]["@value"] == "brownfield"
-    assert site[ns + "parent"][0]["@id"] == "https://example.org/reilp-ds/locations#example-cluster"
+    assert site[ns + "parent"][0]["@id"] == "https://example.org/ilp-ds/locations#example-cluster"
