@@ -1,0 +1,190 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "geojson": "https://purl.org/geojson/vocab#",
+    "ilp": "https://dataforchangemakers.org.uk/ns/ilp-ds#",
+    "schema": "https://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "type": "@type",
+    "id": "@id",
+    "FeatureCollection": "geojson:FeatureCollection",
+    "Feature": "geojson:Feature",
+    "Point": "geojson:Point",
+    "Polygon": "geojson:Polygon",
+    "MultiPolygon": "geojson:MultiPolygon",
+    "features": {
+      "@id": "geojson:features",
+      "@container": "@set"
+    },
+    "geometry": "geojson:geometry",
+    "coordinates": {
+      "@id": "geojson:coordinates",
+      "@container": "@list"
+    },
+    "properties": "@nest",
+    "standard": {
+      "@id": "dct:conformsTo",
+      "@type": "@json"
+    },
+    "publisher": "dct:publisher",
+    "public": null,
+    "base": null,
+    "changelog": null,
+    "kind": "ilp:kind",
+    "parent": {
+      "@id": "ilp:parent",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "description": "schema:description",
+    "organisation": "ilp:organisation",
+    "local-authorities": {
+      "@id": "ilp:localAuthorities",
+      "@container": "@set"
+    },
+    "planning-authority": "ilp:planningAuthority",
+    "opportunity-area": "ilp:opportunityArea",
+    "point": {
+      "@id": "ilp:point",
+      "@container": "@list"
+    },
+    "hectares": {
+      "@id": "ilp:hectares",
+      "@type": "xsd:decimal"
+    },
+    "ownership-status": "ilp:ownershipStatus",
+    "planning-references": {
+      "@id": "ilp:planningReferences",
+      "@container": "@set"
+    },
+    "planning-documents-url": {
+      "@id": "ilp:planningDocumentsUrl",
+      "@type": "@id"
+    },
+    "planning-status": "ilp:planningStatus",
+    "permission-type": "ilp:permissionType",
+    "permission-date": {
+      "@id": "ilp:permissionDate",
+      "@type": "xsd:date"
+    },
+    "homes-consented": {
+      "@id": "ilp:homesConsented",
+      "@type": "xsd:integer"
+    },
+    "floorspace-consented": {
+      "@id": "ilp:floorspaceConsented",
+      "@type": "@json"
+    },
+    "homes-pipeline": {
+      "@id": "ilp:homesPipeline",
+      "@type": "xsd:integer"
+    },
+    "floorspace-pipeline": {
+      "@id": "ilp:floorspacePipeline",
+      "@type": "@json"
+    },
+    "toid": "ilp:toid",
+    "uprns": {
+      "@id": "ilp:uprns",
+      "@container": "@set"
+    },
+    "storeys": {
+      "@id": "ilp:storeys",
+      "@type": "xsd:integer"
+    },
+    "height-m": {
+      "@id": "ilp:heightM",
+      "@type": "xsd:decimal"
+    },
+    "model-tier": "ilp:modelTier",
+    "model-url": {
+      "@id": "ilp:modelUrl",
+      "@type": "@id"
+    },
+    "story-stops": {
+      "@id": "ilp:storyStops",
+      "@container": "@set"
+    },
+    "designated-area": {
+      "@id": "ilp:designatedArea",
+      "@type": "xsd:boolean"
+    },
+    "designations": {
+      "@id": "ilp:designations",
+      "@container": "@set"
+    },
+    "land-type": "ilp:landType",
+    "overall-status": "ilp:overallStatus",
+    "land-assembly": "ilp:landAssembly",
+    "owner-vision": "ilp:ownerVision",
+    "policy-alignment-local": {
+      "@id": "ilp:policyAlignmentLocal",
+      "@type": "@json"
+    },
+    "policy-alignment-regional": {
+      "@id": "ilp:policyAlignmentRegional",
+      "@type": "@json"
+    },
+    "policy-alignment-national": {
+      "@id": "ilp:policyAlignmentNational",
+      "@type": "@json"
+    },
+    "asset-classes": {
+      "@id": "ilp:assetClasses",
+      "@container": "@set"
+    },
+    "economic-drivers": {
+      "@id": "ilp:economicDrivers",
+      "@container": "@set"
+    },
+    "gva-uplift": {
+      "@id": "ilp:gvaUplift",
+      "@type": "xsd:decimal"
+    },
+    "gva-method": "ilp:gvaMethod",
+    "gva-source": "ilp:gvaSource",
+    "gva-date": {
+      "@id": "ilp:gvaDate",
+      "@type": "xsd:date"
+    },
+    "investment-value": {
+      "@id": "ilp:investmentValue",
+      "@type": "xsd:decimal"
+    },
+    "value-type": "ilp:valueType",
+    "value-source": "ilp:valueSource",
+    "value-date": {
+      "@id": "ilp:valueDate",
+      "@type": "xsd:date"
+    },
+    "funding-status": "ilp:fundingStatus",
+    "contacts": {
+      "@id": "ilp:contacts",
+      "@type": "@json"
+    },
+    "investors": {
+      "@id": "ilp:investors",
+      "@type": "@json"
+    },
+    "model-commissioner": "ilp:modelCommissioner",
+    "published-with-consent": {
+      "@id": "ilp:publishedWithConsent",
+      "@container": "@set"
+    },
+    "start-date": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    "end-date": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "entry-date": {
+      "@id": "dct:modified",
+      "@type": "xsd:date"
+    },
+    "source": "dct:source",
+    "licence": "dct:license"
+  }
+}

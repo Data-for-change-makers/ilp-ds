@@ -1,0 +1,11 @@
+value,label,definition,source,group,gresb
+commercial,Commercial,"Offices, sustainable workspaces and retrofit.",Opportunity London asset classes,real-estate,Office
+international-education-and-learning,International education and learning,University facilities and global campuses.,Opportunity London asset classes,real-estate,Education
+experience-economy,Experience economy,"Leisure, retail, cultural venues and creative production spaces.",Opportunity London asset classes,real-estate,"Retail; Lodging, Leisure & Recreation"
+frontier-innovation,Frontier innovation,"Space for life sciences, deep tech and climate tech.",Opportunity London asset classes,real-estate,Technology/Science
+living,Living,"Build-to-rent, student accommodation, later living and affordable housing.",Opportunity London asset classes,real-estate,Residential
+logistics-and-light-industrial,Logistics and light industrial,Warehousing and distribution hubs.,Opportunity London asset classes,real-estate,Industrial
+data-centres,Data centres,Carrier-neutral and non-neutral facilities.,Opportunity London asset classes,infrastructure,Data Infrastructure
+energy-and-decarbonisation,Energy and decarbonisation,"Heat networks, energy efficiency and nature-based solution projects.",Opportunity London asset classes,infrastructure,Network Utilities; Renewable Power
+transport,Transport,Station redevelopments and new connections.,Opportunity London asset classes,infrastructure,Transport
+other,Other,An asset class not listed here. Say which in the description.,ILP-DS,,Other

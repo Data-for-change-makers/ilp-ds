@@ -23,4 +23,4 @@ jobs:
       - name: Tests
         run: python -m pytest -q
       - name: Check the examples
-        run: python tools/check_reilp.py examples/*.geojson
+        run: python tools/check_ilp.py examples/*.geojson

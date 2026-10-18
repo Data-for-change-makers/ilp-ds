@@ -1,5 +1,5 @@
 value,label,definition,source
-opportunity-area,Opportunity area,"A large area designated or promoted for growth, such as a GLA Opportunity Area.",REILP-DS
-cluster,Cluster,A group of neighbouring sites promoted together as one investment opportunity.,REILP-DS
-site,Site,"A single development site, which may hold one or more buildings.",REILP-DS
-building,Building,"An existing or proposed building, usually shown in a 3D model.",REILP-DS
+opportunity-area,Opportunity area,"A large area designated or promoted for growth, such as a GLA Opportunity Area.",ILP-DS
+cluster,Cluster,A group of neighbouring sites promoted together as one investment opportunity.,ILP-DS
+site,Site,"A single development site, which may hold one or more buildings.",ILP-DS
+building,Building,"An existing or proposed building, usually shown in a 3D model.",ILP-DS

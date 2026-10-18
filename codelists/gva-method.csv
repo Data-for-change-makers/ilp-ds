@@ -1,3 +1,3 @@
 value,label,definition,source
-gross,Gross,Gross value added before any adjustment for additionality.,REILP-DS
-net-additional,Net additional,"Gross value added adjusted for deadweight, leakage, displacement and multiplier effects, as in the HM Treasury Green Book.",REILP-DS
+gross,Gross,Gross value added before any adjustment for additionality.,ILP-DS
+net-additional,Net additional,"Gross value added adjusted for deadweight, leakage, displacement and multiplier effects, as in the HM Treasury Green Book.",ILP-DS

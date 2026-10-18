@@ -1,4 +1,4 @@
-"""Make the public copy of a REILP-DS file.
+"""Make the public copy of a ILP-DS file.
 
 Usage:
     python tools/export_public.py INTERNAL_FILE PUBLIC_FILE
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from check_reilp import INTERNAL, RESTRICTED, check_document  # noqa: E402
+from check_ilp import INTERNAL, RESTRICTED, check_document  # noqa: E402
 
 
 def make_public(doc: dict) -> tuple[dict, list[str]]:
