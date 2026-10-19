@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.8-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.9-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -59,7 +59,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.8-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.9-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -177,6 +177,13 @@ that gives a `planning-status` MUST give `permissioned`.
 `permission-type` uses the brownfield land data standard's list and adds `hybrid planning
 permission`: one decision that grants full permission for part of a development, often its first
 phase, and outline permission for the rest. A display MAY show it as "Hybrid (full and outline)".
+
+A large site often holds several consents at once, so `permission-type` is a list with each type
+once, unlike the brownfield register's single value. A former gasworks, for example, may hold a
+hybrid permission for its first phases, reserved matters approvals under it, and a later outline
+permission for the remaining phases: `["hybrid planning permission", "reserved matters approval",
+"outline planning permission"]`. `planning-references` lists the consents themselves. A record that
+lists permission types and gives a `planning-status` MUST give `permissioned`.
 
 A whole opportunity area usually has schemes at several stages at once, so it normally has an
 `overall-status` and no `delivery-stage`; the stage belongs on its clusters and sites. A complete
@@ -318,7 +325,7 @@ publishing or relying on ILP-DS data.
 | Standard | What ILP-DS takes from it |
 | --- | --- |
 | [Planning Data platform](https://www.planning.data.gov.uk) (MHCLG) | Organisation references; `name`, `organisation`, `start-date`, `end-date`, `entry-date`, `source` |
-| [Brownfield land data standard](https://www.gov.uk/government/publications/brownfield-land-registers-data-standard/publish-your-brownfield-land-data) | `hectares`, `ownership-status`, `planning-status`, `permission-type` (ILP-DS adds `hybrid planning permission`), `permission-date` and their code lists; `point` (GeoX, GeoY); `planning-documents-url` (PlanningHistory) |
+| [Brownfield land data standard](https://www.gov.uk/government/publications/brownfield-land-registers-data-standard/publish-your-brownfield-land-data) | `hectares`, `ownership-status`, `planning-status`, `permission-type` (ILP-DS adds `hybrid planning permission` and allows a list), `permission-date` and their code lists; `point` (GeoX, GeoY); `planning-documents-url` (PlanningHistory) |
 | [GLA Planning Information Data Standard](https://london.gov.uk/sites/default/files/updated_non_technical_planning_data_standard.pdf) | `planning-references`, `homes-consented`, `floorspace-consented` |
 | [GLA Opportunity Areas](https://data.london.gov.uk/dataset/opportunity-areas-epr7z) | `opportunity-area` names |
 | ONS GSS codes | `local-authorities` |

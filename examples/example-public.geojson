@@ -70,7 +70,10 @@
       "@type": "@id"
     },
     "planning-status": "ilp:planningStatus",
-    "permission-type": "ilp:permissionType",
+    "permission-type": {
+      "@id": "ilp:permissionType",
+      "@container": "@set"
+    },
     "permission-date": {
       "@id": "ilp:permissionDate",
       "@type": "xsd:date"
@@ -224,7 +227,7 @@
   "type": "FeatureCollection",
   "standard": {
     "name": "ILP-DS",
-    "version": "0.8-draft"
+    "version": "0.9-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
@@ -232,7 +235,7 @@
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for ILP-DS 0.8-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.9-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
@@ -415,7 +418,10 @@
         ],
         "planning-documents-url": "https://example.org/planning/000000",
         "planning-status": "permissioned",
-        "permission-type": "outline planning permission",
+        "permission-type": [
+          "outline planning permission",
+          "reserved matters approval"
+        ],
         "permission-date": "2025-06-30",
         "homes-consented": 450,
         "homes-completed": 120,

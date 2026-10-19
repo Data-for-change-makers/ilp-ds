@@ -5,7 +5,7 @@ investor needs about a place to invest in, across real estate, infrastructure an
 extraction sites: opportunity areas, clusters, sites and buildings, their asset classes, planning status, land type, economic drivers
 and funding, linked to maps and 3D models.
 
-> **Status: 0.8-draft.** We are in the early stages of exploring this standard. Names, fields and
+> **Status: 0.9-draft.** We are in the early stages of exploring this standard. Names, fields and
 > code lists may change in any 0.x release, so do not use it for production data yet.
 
 ILP-DS is an initiative of [West London Business](https://www.westlondon.com), part of

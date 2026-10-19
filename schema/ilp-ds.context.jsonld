@@ -70,7 +70,10 @@
       "@type": "@id"
     },
     "planning-status": "ilp:planningStatus",
-    "permission-type": "ilp:permissionType",
+    "permission-type": {
+      "@id": "ilp:permissionType",
+      "@container": "@set"
+    },
     "permission-date": {
       "@id": "ilp:permissionDate",
       "@type": "xsd:date"
