@@ -1,0 +1,8 @@
+value,label,definition,source
+joint-venture,Joint venture,"A shared vehicle in which the investor and the landowner or council both hold a stake.",ILP-DS
+development-partnership,Development partnership,"A landowner or council appoints a partner to deliver the development, often under a development agreement.",ILP-DS
+capital-investment,Capital investment,"Equity or debt invested in the development or its delivery vehicle.",ILP-DS
+forward-funding,Forward funding,"An investor funds construction in return for the completed asset, such as build-to-rent homes.",ILP-DS
+land-sale,Land sale,The sale of a freehold or long leasehold to an investor or developer.,ILP-DS
+occupier,Occupier,"Space for tenants or owner-occupiers, such as offices, workspace, shops or venues.",ILP-DS
+other,Other,A way to take part that is not listed here. Describe it in opportunity-type-notes.,ILP-DS

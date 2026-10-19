@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.4-draft"
+VERSION = "0.5-draft"
 NAMESPACE = "https://dataforchangemakers.org.uk/ns/ilp-ds#"
 SCHEMA_ID = "https://raw.githubusercontent.com/Data-for-change-makers/ilp-ds/main/schema/ilp-ds.schema.json"
 KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction", "infrastructure", "building"]
@@ -223,6 +223,7 @@ def build_schema() -> dict:
                     "gva-uplift": ["gva-method", "gva-source", "gva-date"],
                     "investment-value": ["value-type", "value-source", "value-date"],
                     "jobs-to": ["jobs-from"],
+                    "floorspace-pipeline-to": ["floorspace-pipeline"],
                 },
                 "allOf": conditions,
             },

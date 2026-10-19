@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.4-draft, 18 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.5-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -45,6 +45,12 @@ Each fact is held once, at the level it belongs to, and linked rather than copie
 site's planning status therefore reaches the map, the 3D model and the open feed without editing
 any of them separately.
 
+**Not yet covered.** Some places investors hear about are networks rather than places with one
+boundary, such as an innovation corridor made up of several clusters and districts (WestTech
+London, for example). No record type fits these yet, so they are left out of ILP-DS files for now.
+A future version could add a record type for them, such as `corridor`, with sub-types for the
+clusters and districts it links.
+
 ## 3. The file
 
 An ILP-DS file is a [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) FeatureCollection,
@@ -53,7 +59,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.4-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.5-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -160,8 +166,9 @@ display MAY show them together under one heading, such as "Drivers".
 ### 4.5 Status and stage
 
 `overall-status` says whether a development is moving: `stalled`, `in-progress` or `complete`.
-`delivery-stage` says how far it has got, where that is known: `visioning`, `master-planning`,
-`committee` or `construction`. Keeping them apart lets a record say "in progress" when that is
+`delivery-stage` says how far it has got, where that is known: `visioning`, `master-planning`
+(a masterplan is being prepared), `masterplan-adopted` (a masterplan is adopted or approved and no
+planning application has yet been made), `committee` or `construction`. Keeping them apart lets a record say "in progress" when that is
 all a source states, and lets a site be stalled at a known stage.
 
 A whole opportunity area usually has schemes at several stages at once, so it normally has an
@@ -174,6 +181,19 @@ Consented figures (`homes-consented`, `floorspace-consented`) and the owner's fu
 (`homes-pipeline`, `floorspace-pipeline`) are kept apart. Displays MUST label pipeline figures
 as a vision, not a consent.
 
+The two never overlap: pipeline figures count only what lies beyond the consent, so the total is
+consented plus pipeline, and adding them never double counts. Sources often use "pipeline" for
+everything planned. Where such a figure includes homes or floorspace already consented, record
+the consented part as consented and only the remainder as pipeline. Where the split is not known,
+record the source's figure as pipeline and say so in `source`.
+
+An opportunity area MAY carry pipeline homes and floorspace, such as the capacity a plan gives
+for the whole area. Its clusters and sites MAY carry their own figures too, so displays MUST NOT
+add an area's figures to its children's.
+
+A range of pipeline floorspace, such as "25,000 to 45,000 sqm", goes in `floorspace-pipeline`
+(the lower figures) and `floorspace-pipeline-to` (the upper figures), keyed alike.
+
 Jobs are recorded as the source states them. A single figure goes in `jobs-from`; a range such
 as "14,000 to 25,000 jobs" goes in `jobs-from` and `jobs-to`. This follows the brownfield land
 data standard, which records dwellings as a range from and to, and keeps the figures usable for
@@ -183,16 +203,26 @@ sorting and totals.
 
 GVA estimates vary widely with the method used (gross or net additional, the period, the
 allowance for displacement). A GVA figure MUST carry its method, source and date, and an
-investment figure its type, source and date.
+investment figure its type, source and date. Where a source gives a GVA figure without a
+method, `gva-method` is `not-stated`, and displays MUST say so beside the figure. A GVA uplift is
+a yearly figure; where a source does not give the period, record it as yearly and say so in
+`gva-source`.
 
 `value-type` says what an investment figure measures: `gdv` (the expected value of the
 completed development), `investment-required` (what the source says is needed to deliver it)
 or `invested-to-date`. An investment requirement is a cost, not a value, so it MUST NOT be
 recorded as a GDV. Where the source qualifies a figure, such as "c.£7.5bn" or "£2bn+", the
-value holds the number and `value-source` SHOULD quote the source's wording. Where a source gives a GVA figure without a
-method, `gva-method` is `not-stated`, and displays MUST say so beside the figure.
+value holds the number and `value-source` SHOULD quote the source's wording.
 
-### 4.8 Publishers' own fields
+### 4.8 How to take part
+
+`opportunity-types` lists the ways an investor or occupier can take part: `joint-venture`,
+`development-partnership`, `capital-investment`, `forward-funding`, `land-sale` and `occupier`.
+A record MAY list several. For anything else, list `other` and describe it in
+`opportunity-type-notes`, which can also add detail to the listed types, such as "council as active
+partner". Types that recur in `other` are candidates for the code list.
+
+### 4.9 Publishers' own fields
 
 A publisher MAY add fields of its own, named with an `x-` prefix, such as `x-discover-colour`.
 Checkers ignore them. Anything another publisher would also need should be proposed for the

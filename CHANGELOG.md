@@ -2,6 +2,22 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.5-draft — 19 October 2026
+
+- Opportunity areas may hold `homes-pipeline` and `floorspace-pipeline`, such as a plan's capacity
+  for the whole area.
+- Pipeline figures are defined as beyond the consent, so consented plus pipeline is the total and
+  never double counts (specification 4.6).
+- New field `floorspace-pipeline-to` for the upper figures of a floorspace range.
+- `delivery-stage` gains `masterplan-adopted`, for a masterplan adopted or approved before any
+  planning application.
+- New fields `opportunity-types` (joint venture, development partnership, capital investment,
+  forward funding, land sale, occupier, other) and `opportunity-type-notes` for free text.
+- GVA uplift with no stated period is recorded as yearly.
+- The specification notes that innovation corridors made up of several clusters and districts
+  have no record type yet, and could be a future one with sub-types.
+- New tool `tools/workbook.py` reads an Excel review workbook into an ILP-DS file.
+
 ## 0.4-draft — 18 October 2026
 
 - Scope: mineral extraction sites are in scope alongside real estate and infrastructure.
