@@ -178,6 +178,10 @@
       "@id": "ilp:valueDate",
       "@type": "xsd:date"
     },
+    "qualifiers": {
+      "@id": "ilp:qualifiers",
+      "@type": "@json"
+    },
     "funding-status": "ilp:fundingStatus",
     "opportunity-types": {
       "@id": "ilp:opportunityTypes",

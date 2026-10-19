@@ -178,6 +178,10 @@
       "@id": "ilp:valueDate",
       "@type": "xsd:date"
     },
+    "qualifiers": {
+      "@id": "ilp:qualifiers",
+      "@type": "@json"
+    },
     "funding-status": "ilp:fundingStatus",
     "opportunity-types": {
       "@id": "ilp:opportunityTypes",
@@ -216,7 +220,7 @@
   "type": "FeatureCollection",
   "standard": {
     "name": "ILP-DS",
-    "version": "0.5-draft"
+    "version": "0.6-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
@@ -224,7 +228,7 @@
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for ILP-DS 0.5-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.6-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
@@ -293,6 +297,10 @@
         },
         "jobs-from": 14000,
         "jobs-to": 25000,
+        "qualifiers": {
+          "homes-pipeline": "at-least",
+          "jobs-to": "up-to"
+        },
         "entry-date": "2026-10-18",
         "source": "Fictional example",
         "overall-status": "in-progress"
@@ -450,6 +458,9 @@
         "value-type": "gdv",
         "value-source": "Fictional example; not a real figure",
         "value-date": "2026-09-01",
+        "qualifiers": {
+          "investment-value": "about"
+        },
         "funding-status": "partly-secured",
         "published-with-consent": [
           "owner-vision",

@@ -349,3 +349,30 @@ def test_unknown_opportunity_type_is_rejected(doc):
     record(doc, "#example-site")["opportunity-types"] = ["handshake"]
     assert check_document(doc)
 
+
+
+# 0.6: qualifiers for approximate and open-ended figures
+
+def test_qualifiers_pass(doc):
+    assert record(doc, "#example-area")["qualifiers"] == {"homes-pipeline": "at-least", "jobs-to": "up-to"}
+    assert check_document(doc) == []
+
+
+def test_qualifier_needs_its_figure(doc):
+    record(doc, "#example-area")["qualifiers"]["gva-uplift"] = "about"
+    assert any("qualifiers names gva-uplift" in p for p in check_document(doc))
+
+
+def test_unknown_qualifier_is_rejected(doc):
+    record(doc, "#example-area")["qualifiers"]["homes-pipeline"] = "roughly"
+    assert check_document(doc)
+
+
+def test_only_figures_can_be_qualified(doc):
+    record(doc, "#example-area")["qualifiers"]["name"] = "about"
+    assert check_document(doc)
+
+
+def test_every_qualifiable_field_is_a_figure():
+    figures = {f["field"] for f in build_schema.fields() if f["type"] in ("integer", "number", "floorspace")}
+    assert set(build_schema.QUALIFIABLE) <= figures
