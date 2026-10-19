@@ -5,7 +5,7 @@ investor needs about a place to invest in, across real estate, infrastructure an
 extraction sites: opportunity areas, clusters, sites and buildings, their asset classes, planning status, land type, economic drivers
 and funding, linked to maps and 3D models.
 
-> **Status: 0.9-draft.** We are in the early stages of exploring this standard. Names, fields and
+> **Status: 0.10-draft.** We are in the early stages of exploring this standard. Names, fields and
 > code lists may change in any 0.x release, so do not use it for production data yet.
 
 ILP-DS is an initiative of [West London Business](https://www.westlondon.com), part of
@@ -31,6 +31,15 @@ and renamed when its scope widened to infrastructure. Mineral extraction sites a
 - **Linked to 3D models.** Buildings in a glTF model carry their record's id, so a change of
   status is a re-export, not a remodel.
 
+## Under consideration
+
+- **An `innovation` record type** for innovation districts, clusters and corridors, which are
+  networks of places rather than one place with a boundary (such as WestTech London).
+- **Electricity capacity fields**, in megawatts: the electricity contracted now, the capacity
+  available now, and the additional capacity a scheme needs.
+
+See [the specification, section 2](docs/specification.md#2-records). Comments are welcome.
+
 ## Contents
 
 | Path | What it holds |
@@ -54,6 +63,10 @@ pip install -r requirements.txt
 python tools/check_ilp.py examples/example-internal.geojson
 python tools/export_public.py examples/example-internal.geojson my-public-copy.geojson
 ```
+
+The first live feed is West London Business's, at
+[westlondon.com/discover/data](https://westlondon.com/discover/data/), which also feeds the cards on
+[Discover West London](https://westlondon.com/discover/).
 
 To change a field or a code list, edit `schema/fields.csv` or the CSV in `codelists/`, then run
 `python tools/build_schema.py` to regenerate the schema, the context and `docs/fields.md`, and
