@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.5-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.6-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -59,7 +59,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.5-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.6-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -212,9 +212,30 @@ a yearly figure; where a source does not give the period, record it as yearly an
 completed development), `investment-required` (what the source says is needed to deliver it)
 or `invested-to-date`. An investment requirement is a cost, not a value, so it MUST NOT be
 recorded as a GDV. Where the source qualifies a figure, such as "c.£7.5bn" or "£2bn+", the
-value holds the number and `value-source` SHOULD quote the source's wording.
+value holds the number, `qualifiers` records how to read it (section 4.8), and `value-source`
+SHOULD quote the source's wording.
 
-### 4.8 How to take part
+### 4.8 Approximate and open-ended figures
+
+Sources rarely give exact figures for things not yet built: "c.£7.5bn", "3,000+ homes", "up to
+14,000 homes". The figure's own field holds the number, and `qualifiers` says how to read it by
+naming that field, such as `{"homes-pipeline": "up-to", "investment-value": "about"}`.
+
+| Qualifier | Source wording | Shown as, for example |
+| --- | --- | --- |
+| `about` | c., about, around, approximately, estimated | c.£7.5bn |
+| `at-least` | +, over, more than, at least | 3,000+ homes |
+| `up-to` | up to, a maximum of, no more than | up to 14,000 homes |
+
+A qualifier may apply to `hectares`, `homes-consented`, `homes-pipeline`, `floorspace-consented`,
+`floorspace-pipeline`, `floorspace-pipeline-to`, `jobs-from`, `jobs-to`, `gva-uplift` and
+`investment-value`; on a floorspace field it applies to every figure in it. A figure not named in
+`qualifiers` is as exact as its source. Each end of a range MAY have its own qualifier.
+
+Displays MUST show the qualifier with the figure, and a total that includes a qualified figure
+MUST be shown as approximate.
+
+### 4.9 How to take part
 
 `opportunity-types` lists the ways an investor or occupier can take part: `joint-venture`,
 `development-partnership`, `capital-investment`, `forward-funding`, `land-sale` and `occupier`.
@@ -222,7 +243,7 @@ A record MAY list several. For anything else, list `other` and describe it in
 `opportunity-type-notes`, which can also add detail to the listed types, such as "council as active
 partner". Types that recur in `other` are candidates for the code list.
 
-### 4.9 Publishers' own fields
+### 4.10 Publishers' own fields
 
 A publisher MAY add fields of its own, named with an `x-` prefix, such as `x-discover-colour`.
 Checkers ignore them. Anything another publisher would also need should be proposed for the

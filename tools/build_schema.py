@@ -16,9 +16,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.5-draft"
+VERSION = "0.6-draft"
 NAMESPACE = "https://dataforchangemakers.org.uk/ns/ilp-ds#"
 SCHEMA_ID = "https://raw.githubusercontent.com/Data-for-change-makers/ilp-ds/main/schema/ilp-ds.schema.json"
+# The figures a qualifier (about, at-least, up-to) may apply to.
+QUALIFIABLE = ["hectares", "homes-consented", "homes-pipeline", "floorspace-consented", "floorspace-pipeline",
+               "floorspace-pipeline-to", "jobs-from", "jobs-to", "gva-uplift", "investment-value"]
 KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction", "infrastructure", "building"]
 
 ID_PATTERN = r"^#[a-z0-9]+(-[a-z0-9]+)*$"
@@ -131,6 +134,10 @@ def field_schema(field: dict[str, str], restricted: list[str]) -> dict:
         schema = {"type": "array", "minItems": 1, "items": {
             "type": "object", "required": ["name"], "additionalProperties": False,
             "properties": {"name": dict(TEXT), "url": dict(URI), "logo-url": dict(URI)}}}
+    elif kind == "qualifiers":
+        schema = {"type": "object", "minProperties": 1,
+                  "propertyNames": {"enum": QUALIFIABLE},
+                  "additionalProperties": {"type": "string", "enum": codelist("qualifier")}}
     elif kind == "field-names":
         schema = {"type": "array", "minItems": 1, "uniqueItems": True,
                   "items": {"type": "string", "enum": restricted}}
@@ -282,7 +289,7 @@ def build_context() -> dict:
             ctx[name] = {"@id": iri, "@type": "@id"}
         elif kind in ("lon-lat",):
             ctx[name] = {"@id": iri, "@container": "@list"}
-        elif kind in ("floorspace", "alignment", "contacts", "organisations"):
+        elif kind in ("floorspace", "alignment", "contacts", "organisations", "qualifiers"):
             ctx[name] = {"@id": iri, "@type": "@json"}
         elif kind.startswith("codes:") or kind in ("strings", "gss-codes", "uprns", "field-names"):
             ctx[name] = {"@id": iri, "@container": "@set"}

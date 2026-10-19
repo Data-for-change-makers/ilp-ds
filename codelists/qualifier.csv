@@ -1,0 +1,4 @@
+value,label,definition,source
+about,About,"The figure is approximate, as in ""c."", ""about"", ""around"", ""approximately"" or ""estimated"".",ILP-DS
+at-least,At least,"The figure is a floor, as in ""+"", ""over"", ""more than"" or ""at least"".",ILP-DS
+up-to,Up to,"The figure is a ceiling, as in ""up to"", ""a maximum of"" or ""no more than"".",ILP-DS

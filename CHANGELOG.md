@@ -2,6 +2,13 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.6-draft — 19 October 2026
+
+- New field `qualifiers`, with the code list `qualifier` (`about`, `at-least`, `up-to`), so
+  figures such as "c.£7.5bn", "3,000+ homes" or "up to 14,000 homes" keep their meaning. It maps
+  the field holding a figure to its qualifier (specification 4.8).
+- Displays must show a qualifier with its figure, and show totals that include one as approximate.
+
 ## 0.5-draft — 19 October 2026
 
 - Opportunity areas may hold `homes-pipeline` and `floorspace-pipeline`, such as a plan's capacity

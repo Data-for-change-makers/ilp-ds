@@ -13,6 +13,7 @@ express:
 * jobs-to is not below jobs-from, and a complete development has no delivery stage;
 * each floorspace-pipeline-to figure has a matching floorspace-pipeline figure and is not below it;
 * opportunity-types including other comes with opportunity-type-notes;
+* every figure named in qualifiers is in the record;
 * a description has no more than 400 words;
 * the JSON-LD @base, if given, matches the file's base;
 * a file marked "public": true carries no internal fields, and carries a restricted field
@@ -112,6 +113,10 @@ def check_document(doc: dict) -> list[str]:
                 problems.append(f"{rid}: floorspace-pipeline-to has {key} but floorspace-pipeline does not")
             elif value < low[key]:
                 problems.append(f"{rid}: floorspace-pipeline-to {key} ({value}) is below floorspace-pipeline ({low[key]})")
+
+        for name in props.get("qualifiers", {}):
+            if name not in props:
+                problems.append(f"{rid}: qualifiers names {name}, which this record does not have")
 
         if "other" in props.get("opportunity-types", []) and not props.get("opportunity-type-notes"):
             problems.append(f"{rid}: opportunity-types includes other, so opportunity-type-notes must say what it is")
