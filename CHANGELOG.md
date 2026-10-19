@@ -2,6 +2,12 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.7-draft — 19 October 2026
+
+- New field `homes-completed`: homes built so far, part of `homes-consented` rather than in
+  addition to it (specification 4.6). It may carry a qualifier, and opportunity areas may hold it.
+- The checker rejects completed homes above consented ones.
+
 ## 0.6-draft — 19 October 2026
 
 - New field `qualifiers`, with the code list `qualifier` (`about`, `at-least`, `up-to`), so

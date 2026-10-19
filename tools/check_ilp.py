@@ -14,6 +14,7 @@ express:
 * each floorspace-pipeline-to figure has a matching floorspace-pipeline figure and is not below it;
 * opportunity-types including other comes with opportunity-type-notes;
 * every figure named in qualifiers is in the record;
+* homes-completed is not above homes-consented;
 * a description has no more than 400 words;
 * the JSON-LD @base, if given, matches the file's base;
 * a file marked "public": true carries no internal fields, and carries a restricted field
@@ -113,6 +114,9 @@ def check_document(doc: dict) -> list[str]:
                 problems.append(f"{rid}: floorspace-pipeline-to has {key} but floorspace-pipeline does not")
             elif value < low[key]:
                 problems.append(f"{rid}: floorspace-pipeline-to {key} ({value}) is below floorspace-pipeline ({low[key]})")
+
+        if props.get("homes-completed", 0) > props.get("homes-consented", float("inf")):
+            problems.append(f"{rid}: homes-completed ({props['homes-completed']}) is above homes-consented ({props['homes-consented']})")
 
         for name in props.get("qualifiers", {}):
             if name not in props:

@@ -79,6 +79,10 @@
       "@id": "ilp:homesConsented",
       "@type": "xsd:integer"
     },
+    "homes-completed": {
+      "@id": "ilp:homesCompleted",
+      "@type": "xsd:integer"
+    },
     "floorspace-consented": {
       "@id": "ilp:floorspaceConsented",
       "@type": "@json"

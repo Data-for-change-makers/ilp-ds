@@ -16,11 +16,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.6-draft"
+VERSION = "0.7-draft"
 NAMESPACE = "https://dataforchangemakers.org.uk/ns/ilp-ds#"
 SCHEMA_ID = "https://raw.githubusercontent.com/Data-for-change-makers/ilp-ds/main/schema/ilp-ds.schema.json"
 # The figures a qualifier (about, at-least, up-to) may apply to.
-QUALIFIABLE = ["hectares", "homes-consented", "homes-pipeline", "floorspace-consented", "floorspace-pipeline",
+QUALIFIABLE = ["hectares", "homes-consented", "homes-completed", "homes-pipeline", "floorspace-consented", "floorspace-pipeline",
                "floorspace-pipeline-to", "jobs-from", "jobs-to", "gva-uplift", "investment-value"]
 KINDS = ["opportunity-area", "cluster", "site", "mineral-extraction", "infrastructure", "building"]
 
