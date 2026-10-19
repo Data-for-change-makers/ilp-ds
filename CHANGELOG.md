@@ -2,6 +2,16 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.9-draft — 19 October 2026
+
+- `permission-type` is now a list, each type once, because a large site often holds several
+  consents at once (for example a hybrid permission, reserved matters approvals under it and a
+  later outline permission). A single value must now be written as a one-item list. The
+  brownfield land data standard holds one value per site; ILP-DS allows more.
+- The checker rejects a record that lists permission types but gives a `planning-status` other
+  than `permissioned`.
+- The example site now holds outline permission and reserved matters approval.
+
 ## 0.8-draft — 19 October 2026
 
 - `permission-type` gains `hybrid planning permission`, for one decision that grants full

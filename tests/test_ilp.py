@@ -405,7 +405,7 @@ def codes(name):
 
 def test_hybrid_permission_and_consented_stage(doc):
     site = record(doc, "#example-site")
-    site["permission-type"] = "hybrid planning permission"
+    site["permission-type"] = ["hybrid planning permission"]
     site["delivery-stage"] = "consented"
     assert check_document(doc) == []
     assert "hybrid planning permission" in codes("permission-type")
@@ -416,5 +416,29 @@ def test_hybrid_permission_and_consented_stage(doc):
 def test_consented_stage_needs_permission(doc):
     site = record(doc, "#example-site")
     site["delivery-stage"] = "consented"
+    del site["permission-type"]
     site["planning-status"] = "pending decision"
     assert any("consented needs planning-status permissioned" in p for p in check_document(doc))
+
+
+def test_permission_type_is_a_list_of_consents(doc):
+    site = record(doc, "#example-site")
+    site["permission-type"] = ["hybrid planning permission", "reserved matters approval", "outline planning permission"]
+    assert check_document(doc) == []
+
+
+def test_single_permission_type_must_be_a_list(doc):
+    record(doc, "#example-site")["permission-type"] = "outline planning permission"
+    assert any("permission-type" in p for p in check_document(doc))
+
+
+def test_permission_types_are_listed_once(doc):
+    record(doc, "#example-site")["permission-type"] = ["outline planning permission", "outline planning permission"]
+    assert any("permission-type" in p for p in check_document(doc))
+
+
+def test_permission_types_need_permission(doc):
+    site = record(doc, "#example-site")
+    site["planning-status"] = "pending decision"
+    site["delivery-stage"] = "committee"
+    assert any("permission-type lists permissions granted" in p for p in check_document(doc))

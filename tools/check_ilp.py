@@ -125,6 +125,9 @@ def check_document(doc: dict) -> list[str]:
         if "other" in props.get("opportunity-types", []) and not props.get("opportunity-type-notes"):
             problems.append(f"{rid}: opportunity-types includes other, so opportunity-type-notes must say what it is")
 
+        if props.get("permission-type") and props.get("planning-status", "permissioned") != "permissioned":
+            problems.append(f"{rid}: permission-type lists permissions granted, so planning-status must be permissioned, not {props['planning-status']}")
+
         if props.get("delivery-stage") == "consented" and props.get("planning-status", "permissioned") != "permissioned":
             problems.append(f"{rid}: delivery-stage consented needs planning-status permissioned, not {props['planning-status']}")
 
