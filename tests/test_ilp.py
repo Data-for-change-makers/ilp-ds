@@ -376,3 +376,23 @@ def test_only_figures_can_be_qualified(doc):
 def test_every_qualifiable_field_is_a_figure():
     figures = {f["field"] for f in build_schema.fields() if f["type"] in ("integer", "number", "floorspace")}
     assert set(build_schema.QUALIFIABLE) <= figures
+
+
+# 0.7: completed homes
+
+def test_homes_completed_within_consent(doc):
+    site = record(doc, "#example-site")
+    assert site["homes-completed"] <= site["homes-consented"]
+    site["qualifiers"] = {"homes-completed": "about"}
+    assert check_document(doc) == []
+
+
+def test_homes_completed_above_consent_is_rejected(doc):
+    site = record(doc, "#example-site")
+    site["homes-completed"] = site["homes-consented"] + 1
+    assert any("above homes-consented" in p for p in check_document(doc))
+
+
+def test_area_can_hold_completed_homes(doc):
+    record(doc, "#example-area")["homes-completed"] = 14500
+    assert check_document(doc) == []

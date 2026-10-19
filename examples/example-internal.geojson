@@ -79,6 +79,10 @@
       "@id": "ilp:homesConsented",
       "@type": "xsd:integer"
     },
+    "homes-completed": {
+      "@id": "ilp:homesCompleted",
+      "@type": "xsd:integer"
+    },
     "floorspace-consented": {
       "@id": "ilp:floorspaceConsented",
       "@type": "@json"
@@ -220,7 +224,7 @@
   "type": "FeatureCollection",
   "standard": {
     "name": "ILP-DS",
-    "version": "0.6-draft"
+    "version": "0.7-draft"
   },
   "publisher": "Example Business Group (fictional)",
   "licence": "CC-BY-4.0",
@@ -228,7 +232,7 @@
   "changelog": [
     {
       "date": "2026-10-18",
-      "note": "Fictional example for ILP-DS 0.6-draft. Every name, number and reference in it is invented."
+      "note": "Fictional example for ILP-DS 0.7-draft. Every name, number and reference in it is invented."
     }
   ],
   "features": [
@@ -416,6 +420,7 @@
         "permission-type": "outline planning permission",
         "permission-date": "2025-06-30",
         "homes-consented": 450,
+        "homes-completed": 120,
         "floorspace-consented": {
           "C3": 31500,
           "E(g)(i)": 12000

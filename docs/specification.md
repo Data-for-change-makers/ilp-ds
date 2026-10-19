@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.6-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.7-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -59,7 +59,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.6-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.7-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -182,7 +182,10 @@ Consented figures (`homes-consented`, `floorspace-consented`) and the owner's fu
 as a vision, not a consent.
 
 The two never overlap: pipeline figures count only what lies beyond the consent, so the total is
-consented plus pipeline, and adding them never double counts. Sources often use "pipeline" for
+consented plus pipeline, and adding them never double counts. `homes-completed` counts the homes built so far.
+They are part of the consent, not in addition to it, so the homes still to come are consented
+minus completed; displays MUST NOT add completed homes to consented ones. An opportunity area MAY
+carry completed homes for the whole area. Sources often use "pipeline" for
 everything planned. Where such a figure includes homes or floorspace already consented, record
 the consented part as consented and only the remainder as pipeline. Where the split is not known,
 record the source's figure as pipeline and say so in `source`.
@@ -227,7 +230,7 @@ naming that field, such as `{"homes-pipeline": "up-to", "investment-value": "abo
 | `at-least` | +, over, more than, at least | 3,000+ homes |
 | `up-to` | up to, a maximum of, no more than | up to 14,000 homes |
 
-A qualifier may apply to `hectares`, `homes-consented`, `homes-pipeline`, `floorspace-consented`,
+A qualifier may apply to `hectares`, `homes-consented`, `homes-completed`, `homes-pipeline`, `floorspace-consented`,
 `floorspace-pipeline`, `floorspace-pipeline-to`, `jobs-from`, `jobs-to`, `gva-uplift` and
 `investment-value`; on a floorspace field it applies to every figure in it. A figure not named in
 `qualifiers` is as exact as its source. Each end of a range MAY have its own qualifier.
