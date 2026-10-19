@@ -1,6 +1,6 @@
 # ILP-DS: Investment Location Profile-Data Standard
 
-**Version 0.9-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
+**Version 0.10-draft, 19 October 2026.** This is an early draft for discussion. Names, fields and
 code lists may change in any 0.x release. Do not rely on it for production data yet.
 
 Maintained by [West London Business](https://www.westlondon.com) as part of
@@ -48,8 +48,15 @@ any of them separately.
 **Not yet covered.** Some places investors hear about are networks rather than places with one
 boundary, such as an innovation corridor made up of several clusters and districts (WestTech
 London, for example). No record type fits these yet, so they are left out of ILP-DS files for now.
-A future version could add a record type for them, such as `corridor`, with sub-types for the
-clusters and districts it links.
+A future version could add an `innovation` record type, with sub-types for innovation districts,
+clusters and corridors, linked to the places they contain.
+
+**Under consideration: electricity capacity.** Grid connections now decide whether many sites can
+be developed, above all for data centres, laboratories and advanced manufacturing. A future
+version could record, in megawatts (MW), the electricity a location has contracted now, the
+capacity available now, and the additional capacity a scheme needs, for example as
+`power-contracted-mw`, `power-available-mw` and `power-required-mw`. Comments on both ideas are
+welcome; see [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## 3. The file
 
@@ -59,7 +66,7 @@ so any GIS or web map can open it. Each record is one Feature.
 | Member | Required | Meaning |
 | --- | --- | --- |
 | `type` | yes | `FeatureCollection` |
-| `standard` | yes | `{"name": "ILP-DS", "version": "0.9-draft"}` |
+| `standard` | yes | `{"name": "ILP-DS", "version": "0.10-draft"}` |
 | `publisher` | yes | The organisation publishing the file |
 | `licence` | yes | The data's licence, as an SPDX identifier or URL, such as `CC-BY-4.0` |
 | `base` | yes | The base URI of the records (section 3.1) |
@@ -221,7 +228,8 @@ sorting and totals.
 GVA estimates vary widely with the method used (gross or net additional, the period, the
 allowance for displacement). A GVA figure MUST carry its method, source and date, and an
 investment figure its type, source and date. Where a source gives a GVA figure without a
-method, `gva-method` is `not-stated`, and displays MUST say so beside the figure. A GVA uplift is
+method, `gva-method` is `not-stated`, and displays SHOULD say so beside the figure. A display that
+leaves the note out, for example on a short summary card, still keeps `not-stated` in the data. A GVA uplift is
 a yearly figure; where a source does not give the period, record it as yearly and say so in
 `gva-source`.
 

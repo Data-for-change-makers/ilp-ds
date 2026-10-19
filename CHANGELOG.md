@@ -2,6 +2,15 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.10-draft — 19 October 2026
+
+- Displays SHOULD (was MUST) say when a GVA figure's method is not stated; the data still records
+  `not-stated`.
+- The specification and README note two ideas under consideration: an `innovation` record type
+  for innovation districts, clusters and corridors, and electricity capacity fields in megawatts
+  (contracted now, available now, additional required).
+- The README links the first live feed, West London Business's.
+
 ## 0.9-draft — 19 October 2026
 
 - `permission-type` is now a list, each type once, because a large site often holds several
