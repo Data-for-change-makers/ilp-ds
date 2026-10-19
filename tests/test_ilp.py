@@ -396,3 +396,25 @@ def test_homes_completed_above_consent_is_rejected(doc):
 def test_area_can_hold_completed_homes(doc):
     record(doc, "#example-area")["homes-completed"] = 14500
     assert check_document(doc) == []
+
+
+def codes(name):
+    with open(ROOT / "codelists" / f"{name}.csv", newline="", encoding="utf-8") as f:
+        return [row["value"] for row in csv.DictReader(f)]
+
+
+def test_hybrid_permission_and_consented_stage(doc):
+    site = record(doc, "#example-site")
+    site["permission-type"] = "hybrid planning permission"
+    site["delivery-stage"] = "consented"
+    assert check_document(doc) == []
+    assert "hybrid planning permission" in codes("permission-type")
+    stages = codes("delivery-stage")
+    assert stages.index("committee") < stages.index("consented") < stages.index("construction")
+
+
+def test_consented_stage_needs_permission(doc):
+    site = record(doc, "#example-site")
+    site["delivery-stage"] = "consented"
+    site["planning-status"] = "pending decision"
+    assert any("consented needs planning-status permissioned" in p for p in check_document(doc))

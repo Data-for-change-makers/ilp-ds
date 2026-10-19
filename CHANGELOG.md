@@ -2,6 +2,18 @@
 
 All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 
+## 0.8-draft — 19 October 2026
+
+- `permission-type` gains `hybrid planning permission`, for one decision that grants full
+  permission for part of a development and outline permission for the rest. The value is added by
+  ILP-DS; the rest of the list is the brownfield land data standard's.
+- `delivery-stage` gains `consented`, between `committee` and `construction`: permission is granted
+  and construction has not started. `committee` now also covers a resolution to grant whose
+  decision has not yet been issued.
+- The checker rejects a record at the `consented` stage whose `planning-status` is not
+  `permissioned`.
+- The example site's stage is corrected to `construction`, as it has completed homes.
+
 ## 0.7-draft — 19 October 2026
 
 - New field `homes-completed`: homes built so far, part of `homes-consented` rather than in
