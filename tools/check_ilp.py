@@ -11,6 +11,8 @@ express:
 * every id in serves names a record in the same file;
 * only infrastructure has a line shape;
 * jobs-to is not below jobs-from, and a complete development has no delivery stage;
+* each floorspace-pipeline-to figure has a matching floorspace-pipeline figure and is not below it;
+* opportunity-types including other comes with opportunity-type-notes;
 * a description has no more than 400 words;
 * the JSON-LD @base, if given, matches the file's base;
 * a file marked "public": true carries no internal fields, and carries a restricted field
@@ -103,6 +105,16 @@ def check_document(doc: dict) -> list[str]:
 
         if "jobs-to" in props and props["jobs-to"] < props.get("jobs-from", 0):
             problems.append(f"{rid}: jobs-to ({props['jobs-to']}) is below jobs-from ({props['jobs-from']})")
+
+        low, high = props.get("floorspace-pipeline", {}), props.get("floorspace-pipeline-to", {})
+        for key, value in high.items():
+            if key not in low:
+                problems.append(f"{rid}: floorspace-pipeline-to has {key} but floorspace-pipeline does not")
+            elif value < low[key]:
+                problems.append(f"{rid}: floorspace-pipeline-to {key} ({value}) is below floorspace-pipeline ({low[key]})")
+
+        if "other" in props.get("opportunity-types", []) and not props.get("opportunity-type-notes"):
+            problems.append(f"{rid}: opportunity-types includes other, so opportunity-type-notes must say what it is")
 
         if props.get("overall-status") == "complete" and "delivery-stage" in props:
             problems.append(f"{rid}: a complete development has no delivery-stage")

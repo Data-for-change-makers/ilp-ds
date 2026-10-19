@@ -1,5 +1,6 @@
 value,label,definition,source
 visioning,Visioning,The owner is forming a vision for the location.,ILP-DS
 master-planning,Master planning,A masterplan is being prepared.,ILP-DS
+masterplan-adopted,Masterplan adopted,"A masterplan has been adopted or approved, and no planning application has yet been made.",ILP-DS
 committee,Committee,An application is with the planning authority or awaiting a committee decision.,ILP-DS
 construction,Construction,Construction has started.,ILP-DS

@@ -91,6 +91,10 @@
       "@id": "ilp:floorspacePipeline",
       "@type": "@json"
     },
+    "floorspace-pipeline-to": {
+      "@id": "ilp:floorspacePipelineTo",
+      "@type": "@json"
+    },
     "jobs-from": {
       "@id": "ilp:jobsFrom",
       "@type": "xsd:integer"
@@ -175,6 +179,11 @@
       "@type": "xsd:date"
     },
     "funding-status": "ilp:fundingStatus",
+    "opportunity-types": {
+      "@id": "ilp:opportunityTypes",
+      "@container": "@set"
+    },
+    "opportunity-type-notes": "ilp:opportunityTypeNotes",
     "contacts": {
       "@id": "ilp:contacts",
       "@type": "@json"

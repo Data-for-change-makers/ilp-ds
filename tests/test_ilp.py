@@ -306,3 +306,79 @@ def test_a_named_contact_is_published(doc):
     public = make_public(doc)[0]
     assert check_document(public) == []
     assert record(public, "#example-site")["contacts"][0]["name"] == "Alex Example (fictional)"
+
+
+# 0.5: homes on areas, floorspace ranges, masterplan adopted, opportunity types, workbook
+
+def test_opportunity_area_can_hold_pipeline_homes_and_floorspace(doc):
+    area = record(doc, "#example-area")
+    assert area["homes-pipeline"] == 12000
+    assert area["floorspace-pipeline-to"]["total"] == 45000
+    assert check_document(doc) == []
+
+
+def test_floorspace_range_upper_not_below_lower(doc):
+    record(doc, "#example-area")["floorspace-pipeline-to"] = {"total": 1000}
+    assert any("is below floorspace-pipeline" in p for p in check_document(doc))
+
+
+def test_floorspace_range_keys_must_match(doc):
+    record(doc, "#example-area")["floorspace-pipeline-to"] = {"E(g)(i)": 50000}
+    assert any("floorspace-pipeline does not" in p for p in check_document(doc))
+
+
+def test_floorspace_range_needs_lower_figure(doc):
+    area = record(doc, "#example-area")
+    del area["floorspace-pipeline"]
+    assert any("floorspace-pipeline" in p for p in check_document(doc))
+
+
+def test_masterplan_adopted_is_a_stage(doc):
+    assert record(doc, "#example-cluster")["delivery-stage"] == "masterplan-adopted"
+    assert check_document(doc) == []
+
+
+def test_other_opportunity_type_needs_notes(doc):
+    site = record(doc, "#example-site")
+    assert "other" in site["opportunity-types"]
+    del site["opportunity-type-notes"]
+    assert any("opportunity-type-notes" in p for p in check_document(doc))
+
+
+def test_unknown_opportunity_type_is_rejected(doc):
+    record(doc, "#example-site")["opportunity-types"] = ["handshake"]
+    assert check_document(doc)
+
+
+def test_workbook_round_trip(tmp_path):
+    from workbook import make_workbook, read_workbook
+
+    records = [
+        {"id": "example-area", "name": "Example Area (fictional)", "kind": "opportunity-area",
+         "local-authorities.1": "E09000009", "homes-pipeline": (12000, "primary", "p1"),
+         "floorspace-pipeline.total": 25000, "floorspace-pipeline-to.total": 45000,
+         "overall-status": "in-progress", "x-show": "yes", "source": "Fictional", "entry-date": "2026-10-19"},
+        {"id": "example-site", "name": "Example Site (fictional)", "kind": "site", "parent": "example-area",
+         "local-authorities.1": "E09000009", "point.lon": -0.3, "point.lat": 51.51,
+         "delivery-stage": "masterplan-adopted", "opportunity-types.1": "joint-venture",
+         "opportunity-types.2": "other", "opportunity-type-notes": "Fictional pre-let",
+         "contacts.1.name": "Alex Example (fictional)", "contacts.1.email": "alex@example.org",
+         "land-assembly": "fragmented", "x-show": "no", "source": "Fictional", "entry-date": "2026-10-19"},
+    ]
+    path = tmp_path / "review.xlsx"
+    make_workbook(records, path, file_info={"publisher": "Example (fictional)", "licence": "CC-BY-4.0",
+                                            "base": "https://example.org/ilp-ds/locations"},
+                  readme=["# Example"], display={"field": "x-show", "label": "Show on map"},
+                  display_fields={"name", "homes-pipeline"})
+    doc, notes, display = read_workbook(path)
+    assert notes == []
+    assert check_document(doc) == []
+    area, site = (f["properties"] for f in doc["features"])
+    assert area["floorspace-pipeline-to"] == {"total": 45000} and area["x-show"] is True
+    assert site["parent"] == "#example-area" and site["point"] == [-0.3, 51.51]
+    assert site["opportunity-types"] == ["joint-venture", "other"]
+    assert site["contacts"] == [{"name": "Alex Example (fictional)", "email": "alex@example.org"}]
+    assert display["homes-pipeline"] is True and display["jobs-from"] is False
+    public = make_public(doc)[0]
+    assert "land-assembly" not in public["features"][1]["properties"]
+    assert check_document(public) == []
