@@ -16,7 +16,6 @@ All notable changes to ILP-DS are recorded here. Dates are in ISO 8601 format.
 - GVA uplift with no stated period is recorded as yearly.
 - The specification notes that innovation corridors made up of several clusters and districts
   have no record type yet, and could be a future one with sub-types.
-- New tool `tools/workbook.py` reads an Excel review workbook into an ILP-DS file.
 
 ## 0.4-draft — 18 October 2026
 

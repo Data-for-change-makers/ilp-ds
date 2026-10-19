@@ -42,7 +42,7 @@ and renamed when its scope widened to infrastructure. Mineral extraction sites a
 | [schema/ilp-ds.schema.json](schema/ilp-ds.schema.json) | JSON Schema 2020-12 (generated) |
 | [schema/ilp-ds.context.jsonld](schema/ilp-ds.context.jsonld) | JSON-LD context (generated) |
 | [examples/](examples) | A fictional example, internal and public versions |
-| [tools/](tools) | Build, check, public-export and Excel workbook scripts |
+| [tools/](tools) | Build, check and public-export scripts |
 | [tests/](tests) | Tests, run on every change |
 
 ## Using it
@@ -54,10 +54,6 @@ pip install -r requirements.txt
 python tools/check_ilp.py examples/example-internal.geojson
 python tools/export_public.py examples/example-internal.geojson my-public-copy.geojson
 ```
-
-To draft or review records in Excel, `tools/workbook.py` makes a workbook with a dropdown for
-every coded field, and `python tools/workbook.py read reviewed.xlsx --out internal.geojson
---public public.geojson` turns the reviewed workbook back into a checked ILP-DS file.
 
 To change a field or a code list, edit `schema/fields.csv` or the CSV in `codelists/`, then run
 `python tools/build_schema.py` to regenerate the schema, the context and `docs/fields.md`, and
