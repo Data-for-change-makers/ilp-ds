@@ -5,4 +5,5 @@ reserved matters approval,Reserved matters approval,,"Brownfield land data stand
 permission in principle,Permission in principle,,"Brownfield land data standard, PermissionType"
 technical details consent,Technical details consent,,"Brownfield land data standard, PermissionType"
 planning permission granted under an order,Planning permission granted under an order,,"Brownfield land data standard, PermissionType"
+hybrid planning permission,Hybrid planning permission,"One decision that grants full planning permission for part of a development and outline permission for the rest. Added by ILP-DS; not in the brownfield land data standard.",ILP-DS
 other,Other,,"Brownfield land data standard, PermissionType"
